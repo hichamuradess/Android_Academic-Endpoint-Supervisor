@@ -1,0 +1,7 @@
+<resources>
+
+    <color name="login_view_label_text">#000000</color>
+    <color name="operation_result_dialog_text">#FEFEFE</color>
+    <color name="operation_result_dialog_text_shadow">#000000</color>
+
+</resources>

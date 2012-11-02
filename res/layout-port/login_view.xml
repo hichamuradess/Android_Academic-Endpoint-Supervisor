@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/login_view_logo_image"
+        layout="@layout/logo" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="@dimen/login_view_main_margin"
+        android:layout_marginRight="@dimen/login_view_main_margin"
+        android:layout_marginTop="20dp" >
+
+        <LinearLayout
+            android:id="@+id/login_view_login_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/login_view_main_padding" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/login_view_email_label"
+                    style="@style/login_screen_label"
+                    android:text="@string/login_view_email_label" />
+
+                <EditText
+                    android:id="@+id/login_view_email_field"
+                    style="@style/login_screen_input_field" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/login_view_password_label"
+                    style="@style/login_screen_label"
+                    android:text="@string/login_view_password_label" />
+
+                <EditText
+                    android:id="@+id/login_view_password_field"
+                    style="@style/login_screen_input_field" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/login_view_login_button"
+                style="@style/login_screen_button"
+                android:text="@string/login_view_login_button" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

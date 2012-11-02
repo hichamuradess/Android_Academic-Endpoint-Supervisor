@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/login_view_logo_image"
+        android:layout_gravity="center"
+        layout="@layout/logo" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="@dimen/login_view_main_margin"
+        android:layout_marginRight="@dimen/login_view_main_margin"
+        android:layout_marginTop="20dp" >
+
+        <LinearLayout
+            android:id="@+id/login_view_login_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/login_view_main_padding" >
+
+            <TextView
+                android:id="@+id/login_view_email_label"
+                style="@style/login_screen_label"
+                android:layout_marginLeft="200dp"
+                android:layout_marginRight="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="left"
+                android:text="@string/login_view_email_label"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/login_view_email_field"
+                android:layout_marginLeft="200dp"
+                android:layout_marginRight="200dp"
+                style="@style/login_screen_input_field" />
+
+            <TextView
+                android:id="@+id/login_view_password_label"
+                style="@style/login_screen_label"
+                android:layout_marginLeft="200dp"
+                android:layout_marginRight="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="left"
+                android:text="@string/login_view_password_label"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/login_view_password_field"
+                android:layout_marginLeft="200dp"
+                android:layout_marginRight="200dp"
+                style="@style/login_screen_input_field" />
+
+            <Button
+                android:id="@+id/login_view_login_button"
+                style="@style/login_screen_button"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="300dp"
+                android:layout_marginRight="300dp"
+                android:text="@string/login_view_login_button" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

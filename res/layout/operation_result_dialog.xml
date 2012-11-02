@@ -1,0 +1,64 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/operation_result_dialog_shape"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:paddingLeft="40dp"
+	android:paddingRight="40dp"
+	android:paddingTop="20dp"
+	android:paddingBottom="20dp"
+>
+
+    <RelativeLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/operation_result_dialog_title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	>
+	    <ImageView 
+	        android:background="@drawable/operation_result_dialog_error_icon"
+	    	android:id="@+id/operation_result_dialog_image"
+	    	android:layout_centerVertical="true"
+	        android:layout_width="50dp"
+	        android:layout_height="50dp"
+	        android:layout_marginRight="30dp"
+	    />
+	    
+	    <TextView 
+		   	android:id="@+id/operation_result_dialog_text"
+		   	android:layout_centerInParent="true"
+		    android:layout_width="wrap_content"
+		    android:layout_toRightOf="@id/operation_result_dialog_image"
+		    android:layout_height="wrap_content"
+		    android:text="Operacja nie powiodła sie"
+		    android:shadowColor="@color/operation_result_dialog_text_shadow"
+	        android:shadowDx="1"
+	        android:shadowDy="1"
+	        android:shadowRadius="2"
+	        android:textColor="@color/operation_result_dialog_text"
+	        android:textSize="20sp"
+	        android:textStyle="bold"
+	    />
+    </RelativeLayout>
+    
+    <TextView 
+        android:gravity="center"
+	   	android:id="@+id/operation_result_dialog_button"
+	   	android:layout_below="@id/operation_result_dialog_title"
+	   	android:layout_centerHorizontal="true"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:layout_width="wrap_content"
+	    android:paddingLeft="30dp"
+	    android:paddingRight="30dp"
+	    android:text="OK"
+	    android:shadowColor="@color/operation_result_dialog_text_shadow"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:textColor="@color/operation_result_dialog_text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+    />
+    
+</RelativeLayout>

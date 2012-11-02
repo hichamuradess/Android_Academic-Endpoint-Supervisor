@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SystemMonitor</string>
+    <string name="login_view_email_label">LOGIN</string>
+    <string name="login_view_password_label">HASŁO</string>
+    <string name="login_view_login_button">ZALOGUJ</string>
+    <string name="login_view_preogress_dialog_label">Loguję użytkownika</string> 
+    <string name="login_view_successful_dialog_label">Zalogowano</string> 
+    <string name="login_view_failed_dialog_label">Operacja logowania nie powiodła się</string> 
+</resources>
