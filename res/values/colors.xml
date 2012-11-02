@@ -3,5 +3,19 @@
     <color name="login_view_label_text">#000000</color>
     <color name="operation_result_dialog_text">#FEFEFE</color>
     <color name="operation_result_dialog_text_shadow">#000000</color>
+    
+    <color name="primary_1">#034569</color>
+    <color name="primary_2">#235B79</color>
+    <color name="primary_3">#086CA2</color>
+    <color name="primary_4">#3C9DD0</color>
+    <color name="primary_5">#64ABD0</color>
+    
+    <color name="secondary_1">#A65A00</color>
+    <color name="secondary_2">#BF7E30</color>
+    <color name="secondary_3">#FF8B00</color>
+    <color name="secondary_4">#FFA840</color>
+    <color name="secondary_5">#FFBF73</color>
+
+    <color name="label_font">#FFFFFF</color>
 
 </resources>

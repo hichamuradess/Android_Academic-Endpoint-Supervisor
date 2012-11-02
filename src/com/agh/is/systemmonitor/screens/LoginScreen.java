@@ -19,7 +19,7 @@ import com.agh.is.systemmonitor.views.LoginView;
 public class LoginScreen extends RoboActivity  {
 
 	@InjectView(R.id.login_screen_login_view) private LoginView loginView; 
-	@InjectView(R.id.login_view_logo_image) private View logoView;
+	@InjectView(R.id.login_view_logo) private View logoView;
     @InjectView(R.id.login_view_login_section) private View loginSection;
     @InjectResource(R.anim.rotate_from_left) private Animation logoViewAnimation; 
 	@InjectResource(R.anim.rotate_from_left) private Animation loginSectionAnimation;

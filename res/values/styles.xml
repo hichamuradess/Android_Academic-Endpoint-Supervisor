@@ -19,8 +19,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_weight">0.6</item>
-        <item name="android:textColor">@color/login_view_label_text</item>
-        <item name="android:textSize">@dimen/login_view_text</item>
     </style>
 
     <style name="login_screen_input_field">
@@ -29,8 +27,6 @@
         <item name="android:layout_marginRight">15dp</item>
         <item name="android:layout_weight">0.4</item>
         <item name="android:inputType">textPassword</item>
-        <item name="android:textColor">@color/login_view_label_text</item>
-        <item name="android:textSize">@dimen/login_view_text</item>
    </style>
 
 </resources>

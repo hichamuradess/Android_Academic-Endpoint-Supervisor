@@ -2,64 +2,95 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/primary_1"
     android:orientation="vertical" >
 
-    <include
-        android:id="@+id/login_view_logo_image"
-        layout="@layout/logo" />
-
+   <include 
+       android:id="@+id/login_view_logo"
+       layout="@layout/logo"
+   /> 
     <ScrollView
+	    android:background="@drawable/login_section_shape"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="@dimen/login_view_main_margin"
         android:layout_marginRight="@dimen/login_view_main_margin"
-        android:layout_marginTop="20dp" >
+>
 
         <LinearLayout
             android:id="@+id/login_view_login_section"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="@dimen/login_view_main_padding" >
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/login_view_email_label"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal" >
+                android:gravity="left"
+                android:text="@string/login_view_email_label"
+                android:textColor="@color/label_font"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/login_view_email_label"
-                    style="@style/login_screen_label"
-                    android:text="@string/login_view_email_label" />
-
-                <EditText
-                    android:id="@+id/login_view_email_field"
-                    style="@style/login_screen_input_field" />
-            </LinearLayout>
-
-            <LinearLayout
+            <EditText
+                android:id="@+id/login_view_email_field"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+            <TextView
+                android:id="@+id/login_view_password_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal" >
+                android:gravity="left"
+                android:text="@string/login_view_password_label"
+                android:textColor="@color/label_font"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            
+            <EditText
+                android:id="@+id/login_view_password_field"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
 
-                <TextView
-                    android:id="@+id/login_view_password_label"
-                    style="@style/login_screen_label"
-                    android:text="@string/login_view_password_label" />
 
-                <EditText
-                    android:id="@+id/login_view_password_field"
-                    style="@style/login_screen_input_field" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/white"
+                android:height="1px" />
 
             <Button
+			    android:background="@drawable/orange_round_shape"
                 android:id="@+id/login_view_login_button"
-                style="@style/login_screen_button"
-                android:text="@string/login_view_login_button" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:padding="5dp"
+                android:text="@string/login_view_login_button" 
+                android:textColor="@color/secondary_1"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </ScrollView>
 
