@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 public class LoginView extends LinearLayout{
 	
 	private static final int LAYOUT_ID = R.layout.login_view;
+	private EditText hostField = null;
 	private EditText emailField = null;
 	private EditText passwordField = null;
 	private Button loginButton = null;
@@ -45,6 +46,7 @@ public class LoginView extends LinearLayout{
 		
 		emailField = (EditText)findViewById(R.id.login_view_email_field);
 		passwordField = (EditText)findViewById(R.id.login_view_password_field);
+		hostField = (EditText)findViewById(R.id.login_view_host_field);
 		loginButton = (Button)findViewById(R.id.login_view_login_button);
 	}
 }

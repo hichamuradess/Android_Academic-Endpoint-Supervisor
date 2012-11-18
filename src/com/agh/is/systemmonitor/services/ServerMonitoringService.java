@@ -26,7 +26,7 @@ public class ServerMonitoringService extends Service {
 	private Timer updatingTimer;
 	private ServerDataService serverDataDownloader;
 	public static final String DOWNLOAD_LINK = "http://aes.srebrny.pl/";
-	private ServerParametersBuilder agentParametersBuilder = new ServerParametersBuilder().login(MainScreen.login).password(MainScreen.password).host(DOWNLOAD_LINK);
+	private ServerParametersBuilder agentParametersBuilder = new ServerParametersBuilder().login(SystemMonitorActivity.login).password(SystemMonitorActivity.password).host(DOWNLOAD_LINK);
 	private List<Record> records;
 
 	private TimerTask notify = new TimerTask() {

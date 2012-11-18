@@ -5,11 +5,10 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
     
-    <com.agh.is.systemmonitor.views.LoginView 
+    <include layout="@layout/login_view"
         android:id="@+id/login_screen_login_view"
         android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
-    >
+	/>
         
-    </com.agh.is.systemmonitor.views.LoginView>
 </LinearLayout>

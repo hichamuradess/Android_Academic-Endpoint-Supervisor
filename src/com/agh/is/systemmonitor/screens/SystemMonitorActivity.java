@@ -10,8 +10,8 @@ import com.agh.is.systemmonitor.views.dialogs.ProgressDialog;
 
 abstract public class SystemMonitorActivity extends RoboFragmentActivity {
 
-	
 	public static final String DATA_UPDATE = "com.agh.is.systemmonitor.DATA_UPDATE";	
-
+	public static String password;
+	public static String login;
 	
 }

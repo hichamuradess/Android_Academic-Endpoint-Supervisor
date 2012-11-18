@@ -36,7 +36,7 @@ import com.agh.is.systemmonitor.views.AgentInformationFragment;
 import com.agh.is.systemmonitor.views.AgentsListFragment;
 
 @ContentView(R.layout.main_screen)
-public class MainScreen extends RoboFragmentActivity implements RecordClickListener{
+public class MainScreen extends SystemMonitorActivity implements RecordClickListener{
 
 	private ServerMonitoringService serverMonitoringService; 
 	private boolean serverMonitoringServiceIsBound;
@@ -47,8 +47,6 @@ public class MainScreen extends RoboFragmentActivity implements RecordClickListe
 	private ServerParametersBuilder paramsBuilder = new ServerParametersBuilder().host(ServerMonitoringService.DOWNLOAD_LINK);
 	private ServerDataService serverDataDownloader; 
 	private AgentInformationFragment infoFragment ;
-	public static String login;
-	public static String password;
 	public String parentID;
 
 	private ServiceConnection conn = new ServiceConnection() {
@@ -71,7 +69,7 @@ public class MainScreen extends RoboFragmentActivity implements RecordClickListe
 		dialogsManager = new DialogWindowsManager(this);
 		serverDataDownloader = new ServerDataService(new ServerPathToJSONResolver(), new ParametersToPathResolver(), new JSONToDataResolver());
 		parentID = getIntent().getStringExtra("parentID");
-		new RecordsDownloadTask(paramsBuilder.login(MainScreen.login).password(MainScreen.password).parentId(parentID)).execute(new Void[]{});
+		new RecordsDownloadTask(paramsBuilder.login(login).password(password).parentId(parentID)).execute(new Void[]{});
 	}
 
 	protected void onStart() {
@@ -147,7 +145,9 @@ public class MainScreen extends RoboFragmentActivity implements RecordClickListe
 			this.agent = params[0];
 			try {
 				dialogsManager.showProgressDialog("Pobieram informacje o agencie : " + agent.getName());
-				return serverDataDownloader.downloadAgentsInformation(paramsBuilder.recordId(Integer.toString(agent.getId()))).get(0);
+				return serverDataDownloader.downloadAgentsInformation(
+						paramsBuilder.login(login).password(password).recordId(Integer.toString(agent.getId()))).get(0);
+				
 			} catch (ResolvingException e) {
 				exception = e;
 				return null;

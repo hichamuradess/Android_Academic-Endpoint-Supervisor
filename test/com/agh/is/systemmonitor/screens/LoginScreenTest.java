@@ -70,5 +70,19 @@ public class LoginScreenTest {
 		//then
 		assertThat(btnLabel.getText().toString()).isEqualTo(title);
 	}
+	
+	@Test
+	public void shouldHaveHostLabel() {
+		//given
+		String title = loginScreen.getResources().getString(R.string.login_view_host_label);
+		
+		//when
+		TextView hostLabel = (Button)loginScreen.findViewById(R.id.login_view_host_label);
+		
+		//then
+		assertThat(hostLabel.getText().toString()).isEqualTo(title);
+	}
+
+
 
 }

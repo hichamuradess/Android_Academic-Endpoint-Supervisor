@@ -37,7 +37,7 @@ import com.google.common.io.CharStreams;
 import com.google.common.io.Closeables;
 import com.google.gson.Gson;
 
-public class LoginScreen extends Activity  {
+public class LoginScreen extends SystemMonitorActivity  {
 
 	private LoginView loginView; 
 	private View logoView;
@@ -119,18 +119,15 @@ public class LoginScreen extends Activity  {
 
 	private class LoginUserOnServerTask extends AsyncTask<Void, Void, AsyncTaskResult<String>> {
 
-		private String login;
-		private String pass;
-
 		public LoginUserOnServerTask(String login, String password) {
-			this.login = login;
-			this.pass = password;
+			LoginScreen.login = login;
+			LoginScreen.password = password;
 		}
 
 		@Override
 		protected AsyncTaskResult<String> doInBackground(Void... params) {
 			try {
-				String response = loginUser("http://aes.srebrny.pl/?login="+login+"&pass="+pass);
+				String response = loginUser("http://aes.srebrny.pl/?login="+login+"&pass="+password);
 				return new AsyncTaskResult<String>(response);
 			} catch (IOException e) {
 				return new AsyncTaskResult<String>(e, "Logowanie nie powiodło się (problem z połączeniem)");
@@ -156,8 +153,6 @@ public class LoginScreen extends Activity  {
 						@Override
 						public void onClick(View v) {
 							Intent i = new Intent(getBaseContext(), MainScreen.class);
-							MainScreen.login = login;
-							MainScreen.password = pass;
 							i.putExtra("parentID", "0");
 							startActivity(i);
 						}
