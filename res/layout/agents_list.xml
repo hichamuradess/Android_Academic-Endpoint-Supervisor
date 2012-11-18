@@ -2,12 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/secondary_5"
     android:orientation="vertical" >
 
-    <ExpandableListView
+    <ListView
         android:id="@+id/agents_list_agents_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </ExpandableListView>
+        android:layout_height="match_parent"
+        android:background="@color/secondary_5"
+        android:orientation="vertical" >
+    </ListView>
 
 </LinearLayout>

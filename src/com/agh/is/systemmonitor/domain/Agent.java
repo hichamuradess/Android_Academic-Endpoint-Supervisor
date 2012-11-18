@@ -1,15 +1,17 @@
 package com.agh.is.systemmonitor.domain;
 
+import com.agh.is.systemmonitor.adapters.Record;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Agent implements Parcelable{
+public class Agent implements Parcelable, Record{
 	
 	private final int id;
 	private final String domain;
 	private final String name;
 	private final int last_check;
-	private final String group;
+	private String group;
 
 	public static final Parcelable.Creator<Agent> CREATOR = new Parcelable.Creator<Agent>() {
 		public Agent createFromParcel(Parcel in) {
@@ -29,6 +31,10 @@ public class Agent implements Parcelable{
 		this.group = group;
 	}
 
+	public void setGroup(String group) {
+		this.group = group;
+	}
+		
 	public String getGroup() {
 		return group;
 	}

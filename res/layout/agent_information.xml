@@ -1,31 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/primary_1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
     
-	<TextView 
-        android:id="@+id/agent_information_temp_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fragment view"
-        android:textSize="40sp"
-    />
-    
-    <com.agh.is.systemmonitor.views.ThermometerView
-        android:id="@+id/agent_information_cpu_thermometer_view"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-    >
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+        >
+			<TextView 
+		        android:id="@+id/agent_information_cpu_usage"
+		        android:background="@color/secondary_4"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="40sp"
+		        android:textColor="@color/label_font"
+		        android:text="Zużycie procesora"
+		        android:textStyle="bold"
+		    />
         
-    </com.agh.is.systemmonitor.views.ThermometerView>
+    </LinearLayout>
+	
     
-    
-    <com.agh.is.systemmonitor.views.ThermometerView
-        android:id="@+id/agent_information_hd_thermometer_view"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-    >
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+        >
+			<TextView 
+		        android:id="@+id/agent_information_hd_temp"
+		        android:background="@color/secondary_4"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="40sp"
+		        android:textColor="@color/label_font"
+		        android:text="Temperatura dysku"
+		        android:textStyle="bold"
+		    />
         
-    </com.agh.is.systemmonitor.views.ThermometerView>
+    </LinearLayout>
+    
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+        >
+			<TextView 
+		        android:id="@+id/agent_information_disc_usage"
+		        android:background="@color/secondary_4"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="40sp"
+		        android:textColor="@color/label_font"
+		        android:text="Zużycie dysku"
+		        android:textStyle="bold"
+		    />
+        
+    </LinearLayout>
 </LinearLayout>
+

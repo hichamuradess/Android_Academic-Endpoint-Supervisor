@@ -6,24 +6,25 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.agh.is.systemmonitor.resolvers.network.JSONToAgentDataResolverImpl;
-import com.agh.is.systemmonitor.resolvers.network.ResolvingException;
-import com.agh.is.systemmonitor.resolvers.network.ServerParameters;
-import com.agh.is.systemmonitor.resolvers.network.ParametersToPathResolverImpl;
-import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
+import com.agh.is.systemmonitor.AESTestRunner;
+import com.agh.is.systemmonitor.resolvers.network.JSONToDataResolver;
 import com.agh.is.systemmonitor.resolvers.network.ParametersToPathResolver;
-import com.agh.is.systemmonitor.resolvers.network.ServerPathToJSONResolverImpl;
+import com.agh.is.systemmonitor.resolvers.network.ResolvingException;
+import com.agh.is.systemmonitor.resolvers.network.ServerParametersBuilder;
+import com.agh.is.systemmonitor.resolvers.network.ServerParametersBuilder.ServerParametersBuilder;
+import com.agh.is.systemmonitor.resolvers.network.ServerPathToJSONResolver;
+import com.xtremelabs.robolectric.RobolectricTestRunner;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(AESTestRunner.class)
 public class ParametersToPathResolverImplTest {
 
 	private ServerParametersBuilder builder = new ServerParametersBuilder();
-	private ParametersToPathResolver underTest = new ParametersToPathResolverImpl();
+	private ParametersToPathResolver underTest = new ParametersToPathResolver();
 	
 	@Test
 	public void shouldResolveAgentsInformationDownloadPath() {
 		//given
-		ServerParameters parameters = builder.host("http://aes.srebrny.pl/").
+		ServerParametersBuilder parameters = builder.host("http://aes.srebrny.pl/").
 				recordsLimit("0").sortColumn("id").sortOffset("1").sortOrder("asc").build();
 		
 		//when 
@@ -37,7 +38,7 @@ public class ParametersToPathResolverImplTest {
 	@Test
 	public void shouldResolveAgentsDownloadPath() {
 		//given
-		ServerParameters parameters = builder.host("http://aes.srebrny.pl/").
+		ServerParametersBuilder parameters = builder.host("http://aes.srebrny.pl/").
 				recordsLimit("0").sortColumn("id").sortOffset("1").sortOrder("asc").recordId("1").build();
 		
 		//when 
@@ -45,13 +46,6 @@ public class ParametersToPathResolverImplTest {
 		
 		//then
 		String correctPath = "http://aes.srebrny.pl/?do=display_system&id=1&name=id&order=asc&limit=0&offset=1";
-				try {
-			String json = new ServerPathToJSONResolverImpl().resolve(correctPath);
-			System.out.println(new JSONToAgentDataResolverImpl().resolveAgentsInformations(json).get(0).getId());
-		} catch (ResolvingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		assertThat(path).isEqualTo(correctPath);
 	}
 	

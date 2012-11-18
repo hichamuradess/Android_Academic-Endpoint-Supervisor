@@ -9,27 +9,26 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
-import com.agh.is.systemmonitor.domain.Agent;
-import com.agh.is.systemmonitor.domain.AgentInformation;
-import com.agh.is.systemmonitor.resolvers.network.AgentsInformationsGroupedByAgents;
-import com.agh.is.systemmonitor.resolvers.network.JSONToAgentDataResolverImpl;
-import com.agh.is.systemmonitor.resolvers.network.ParametersToPathResolverImpl;
+import com.agh.is.systemmonitor.adapters.Record;
+import com.agh.is.systemmonitor.resolvers.network.JSONToDataResolver;
+import com.agh.is.systemmonitor.resolvers.network.ParametersToPathResolver;
 import com.agh.is.systemmonitor.resolvers.network.ResolvingException;
 import com.agh.is.systemmonitor.resolvers.network.ServerDataService;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
-import com.agh.is.systemmonitor.resolvers.network.ServerPathToJSONResolverImpl;
+import com.agh.is.systemmonitor.resolvers.network.ServerPathToJSONResolver;
+import com.agh.is.systemmonitor.screens.MainScreen;
 import com.agh.is.systemmonitor.screens.SystemMonitorActivity;
 
 public class ServerMonitoringService extends Service {
 
 	private final IBinder binder = new LocalBinder();
-	private int counter = 0;
 	private Timer updatingTimer;
 	private ServerDataService serverDataDownloader;
-	private ServerParameters agentParameters = new ServerParameters.ServerParametersBuilder().host("http://aes.srebrny.pl/").build();
-	private ServerParametersBuilder serverParametersBuilder = new ServerParametersBuilder().host("http://aes.srebrny.pl/")	;
-	
+	public static final String DOWNLOAD_LINK = "http://aes.srebrny.pl/";
+	private ServerParametersBuilder agentParametersBuilder = new ServerParametersBuilder().login(MainScreen.login).password(MainScreen.password).host(DOWNLOAD_LINK);
+	private List<Record> records;
+
 	private TimerTask notify = new TimerTask() {
 
 		@Override
@@ -42,14 +41,11 @@ public class ServerMonitoringService extends Service {
 		}
 	};
 
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		serverDataDownloader = new ServerDataService(
-				new ServerPathToJSONResolverImpl(), 
-				new ParametersToPathResolverImpl(), 
-				new JSONToAgentDataResolverImpl());
-		
+		serverDataDownloader = new ServerDataService(new ServerPathToJSONResolver(), new ParametersToPathResolver(), new JSONToDataResolver());
 		updatingTimer = new Timer();
 		updatingTimer.schedule(notify, 0, 10000);
 	}
@@ -77,24 +73,28 @@ public class ServerMonitoringService extends Service {
 	public IBinder onBind(Intent arg0) {
 		return binder;
 	}
-
-	private void downloadDataFromServer() throws ResolvingException {
-		AgentsInformationsGroupedByAgents agentsToInformationsMap = new AgentsInformationsGroupedByAgents();
-		
-		List<Agent> agents = serverDataDownloader.downloadAgents(agentParameters);
-		for(Agent a : agents) {
-			ServerParameters parameters = serverParametersBuilder.recordId(Integer.toString(a.getId())).build();
-			List<AgentInformation> informations = serverDataDownloader.downloadAgentsInformation(parameters);
-			agentsToInformationsMap.put(a, informations);
+	
+	public void setHost(String host) {
+		synchronized(this) {
+			agentParametersBuilder = new ServerParametersBuilder().host(host);
 		}
-		
-		sendData(agentsToInformationsMap);
 	}
 	
-	
-	private void sendData(AgentsInformationsGroupedByAgents map) {
+	public synchronized List<Record> getDownloadedRecords() {
+		return records;
+	}
+
+	private void downloadDataFromServer() throws ResolvingException {
+		synchronized (this) {
+			records = serverDataDownloader.downloadRecords(agentParametersBuilder);
+		}
+		sendNotification();
+	}
+
+
+	private void sendNotification() {
 		Intent intent = new Intent(SystemMonitorActivity.DATA_UPDATE);
-		intent.putExtra(SystemMonitorActivity.DATA_UPDATE, map);
+		intent.putExtra(SystemMonitorActivity.DATA_UPDATE, "updated");
 		sendBroadcast(intent);
 	}	
 

@@ -14,9 +14,9 @@ import com.agh.is.systemmonitor.domain.AgentInformation;
 
 public class AgentInformationFragment extends RoboFragment{
 	
-	@InjectView(R.id.agent_information_temp_view) private TextView tempView;
-	@InjectView(R.id.agent_information_cpu_thermometer_view) private ThermometerView cputTempView;
-	@InjectView(R.id.agent_information_hd_thermometer_view) private ThermometerView hdTempView;
+//	@InjectView(R.id.agent_information_temp_view) private TextView tempView;
+//	@InjectView(R.id.agent_information_cpu_thermometer_view) private ThermometerView cputTempView;
+//	@InjectView(R.id.agent_information_hd_thermometer_view) private ThermometerView hdTempView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,8 +26,8 @@ public class AgentInformationFragment extends RoboFragment{
 	}
 	
 	public void setAgentData(Agent agent, AgentInformation agentInfo) {
-		cputTempView.setTemperature(agentInfo.getCpuTemp());
-		hdTempView.setTemperature(agentInfo.getHdTemp());
+//		cputTempView.setTemperature(agentInfo.getCpuTemp());
+//		hdTempView.setTemperature(agentInfo.getHdTemp());
 	}
 	
 }
