@@ -5,18 +5,21 @@
     android:background="@color/primary_1"
     android:orientation="vertical" >
 
-   <include 
-       android:id="@+id/login_view_logo"
-       layout="@layout/logo"
-   /> 
-    <ScrollView
-	    android:background="@drawable/login_section_shape"
+    <include
+        android:id="@+id/login_view_logo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="0.2"
+        layout="@layout/logo" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginLeft="@dimen/login_view_main_margin"
         android:layout_marginRight="@dimen/login_view_main_margin"
->
+        android:layout_weight="0.8"
+        android:background="@drawable/login_section_shape" >
 
         <LinearLayout
             android:id="@+id/login_view_login_section"
@@ -26,71 +29,76 @@
             android:padding="@dimen/login_view_main_padding" >
 
             <TextView
+                android:id="@+id/login_view_host_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:padding="10dp"
+                android:text="@string/login_view_host_label"
+                android:textColor="@color/label_font"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/login_view_host_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="http://aes.srebrny.pl" />
+
+            <TextView
                 android:id="@+id/login_view_email_label"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
                 android:gravity="left"
+                android:padding="10dp"
                 android:text="@string/login_view_email_label"
                 android:textColor="@color/label_font"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/login_view_email_field"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="user" />
 
             <TextView
                 android:id="@+id/login_view_password_label"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
                 android:gravity="left"
+                android:padding="10dp"
                 android:text="@string/login_view_password_label"
                 android:textColor="@color/label_font"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
-            
+
             <EditText
                 android:id="@+id/login_view_password_field"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp" />
-
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:inputType="textPassword"
+                android:text="password" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 android:height="1px" />
 
             <Button
-			    android:background="@drawable/orange_round_shape"
                 android:id="@+id/login_view_login_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
-                android:padding="5dp"
-                android:text="@string/login_view_login_button" 
+                android:layout_margin="20dp"
+                android:background="@drawable/orange_round_shape"
+                android:text="@string/login_view_login_button"
                 android:textColor="@color/secondary_1"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
     </ScrollView>
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentInformation;
-import com.agh.is.systemmonitor.domain.AgentsGroup;
+import com.agh.is.systemmonitor.domain.GroupOfAgents;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -15,13 +15,13 @@ public class JSONToDataResolver {
 	private Gson gson = new Gson();
 	private Type agentsType = new TypeToken<List<Agent>>(){}.getType();
 	private Type agentsInformationsType = new TypeToken<List<AgentInformation>>(){}.getType();
-	private Type groupOfAgentsType = new TypeToken<List<AgentsGroup>>(){}.getType();
+	private Type groupOfAgentsType = new TypeToken<List<GroupOfAgents>>(){}.getType();
 
 	public List<Agent> resolveAgents(String jsonString) {
 		return gson.fromJson(new StringReader(jsonString), agentsType) ;
 	}
 
-	public List<AgentsGroup> resolveAgentGroups(String jsonString) {
+	public List<GroupOfAgents> resolveAgentGroups(String jsonString) {
 		return gson.fromJson(new StringReader(jsonString), groupOfAgentsType) ;
 	}
 	

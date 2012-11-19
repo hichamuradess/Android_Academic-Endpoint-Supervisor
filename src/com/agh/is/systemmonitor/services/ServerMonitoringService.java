@@ -10,21 +10,16 @@ import android.os.Binder;
 import android.os.IBinder;
 
 import com.agh.is.systemmonitor.adapters.Record;
-import com.agh.is.systemmonitor.resolvers.network.JSONToDataResolver;
-import com.agh.is.systemmonitor.resolvers.network.ParametersToPathResolver;
 import com.agh.is.systemmonitor.resolvers.network.ResolvingException;
-import com.agh.is.systemmonitor.resolvers.network.ServerDataService;
-import com.agh.is.systemmonitor.resolvers.network.ServerParameters;
+import com.agh.is.systemmonitor.resolvers.network.ServerCommunicationService;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
-import com.agh.is.systemmonitor.resolvers.network.ServerPathToJSONResolver;
-import com.agh.is.systemmonitor.screens.MainScreen;
 import com.agh.is.systemmonitor.screens.SystemMonitorActivity;
 
 public class ServerMonitoringService extends Service {
 
 	private final IBinder binder = new LocalBinder();
 	private Timer updatingTimer;
-	private ServerDataService serverDataDownloader;
+	private ServerCommunicationService serverDataDownloader;
 	public static final String DOWNLOAD_LINK = "http://aes.srebrny.pl/";
 	private ServerParametersBuilder agentParametersBuilder = new ServerParametersBuilder().login(SystemMonitorActivity.login).password(SystemMonitorActivity.password).host(DOWNLOAD_LINK);
 	private List<Record> records;
@@ -45,7 +40,7 @@ public class ServerMonitoringService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		serverDataDownloader = new ServerDataService(new ServerPathToJSONResolver(), new ParametersToPathResolver(), new JSONToDataResolver());
+		serverDataDownloader = new ServerCommunicationService();
 		updatingTimer = new Timer();
 		updatingTimer.schedule(notify, 0, 10000);
 	}

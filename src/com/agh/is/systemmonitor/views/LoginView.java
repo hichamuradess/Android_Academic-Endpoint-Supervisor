@@ -34,7 +34,7 @@ public class LoginView extends LinearLayout{
 		loginButton.setOnClickListener(new OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				listener.onClick(emailField.getText().toString(), passwordField.getText().toString());
+				listener.onClick(emailField.getText().toString(), passwordField.getText().toString(), hostField.getText().toString());
 			}
 		});
 	}

@@ -6,6 +6,11 @@ import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParamet
 
 public class ParametersToPathResolver {
 
+	public String resolveLoginPath(ServerParametersBuilder parametersBuilder) {
+		ServerParameters parameters =parametersBuilder.build();
+		return parameters.getHost() + resolveCredentials(parameters) ;
+	}
+	
 	public String resolveAgentsDownloadPath(ServerParametersBuilder parametersBuilder) {
 		ServerParameters parameters =parametersBuilder.build();
 		return parameters.getHost() + resolveCredentials(parameters) + "&do=display_servers" + resolveCommonParameters(parameters);

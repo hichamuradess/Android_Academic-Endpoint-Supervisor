@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.agh.is.systemmonitor.AESTestRunner;
@@ -20,13 +21,14 @@ public class LoginScreenTest {
 	@Before 
 	public void setUp() {
 		loginScreen = new LoginScreen();
+		loginScreen.turnOffAnimation();
 		loginScreen.onCreate(null);
 	}
 	
 	@Test
 	public void shouldHaveTitleLabel() {
 		//given
-		String title = loginScreen.getResources().getString(R.string.login_screen_title_logo);
+		String title = loginScreen.getResources().getString(R.string.title_logo);
 		
 		//when
 		TextView titleLabel = (TextView)loginScreen.findViewById(R.id.login_view_logo);
@@ -48,6 +50,17 @@ public class LoginScreenTest {
 	}
 	
 	@Test
+	public void shouldHaveEmailField() {
+		//given
+		EditText field = (EditText)loginScreen.findViewById(R.id.login_view_email_field);
+		
+		//when
+		
+		//then
+		assertThat(field).isNotNull();
+	}
+	
+	@Test
 	public void shouldHavePasswordLabel() {
 		//given
 		String title = loginScreen.getResources().getString(R.string.login_view_password_label);
@@ -57,6 +70,17 @@ public class LoginScreenTest {
 		
 		//then
 		assertThat(passLabel.getText().toString()).isEqualTo(title);
+	}
+	
+	@Test
+	public void shouldHavePasswordField() {
+		//given
+		EditText field = (EditText)loginScreen.findViewById(R.id.login_view_password_field);
+		
+		//when
+		
+		//then
+		assertThat(field).isNotNull();
 	}
 	
 	@Test
@@ -77,12 +101,22 @@ public class LoginScreenTest {
 		String title = loginScreen.getResources().getString(R.string.login_view_host_label);
 		
 		//when
-		TextView hostLabel = (Button)loginScreen.findViewById(R.id.login_view_host_label);
+		TextView hostLabel = (TextView)loginScreen.findViewById(R.id.login_view_host_label);
 		
 		//then
 		assertThat(hostLabel.getText().toString()).isEqualTo(title);
 	}
 
+	@Test
+	public void shouldHaveHostField() {
+		//given
+		EditText hostField = (EditText)loginScreen.findViewById(R.id.login_view_host_field);
+		
+		//when
+		
+		//then
+		assertThat(hostField).isNotNull();
+	}
 
 
 }

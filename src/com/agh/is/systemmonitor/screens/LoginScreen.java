@@ -30,6 +30,8 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 
 import com.agh.is.systemmonitor.R;
+import com.agh.is.systemmonitor.resolvers.network.LoginUserOnServerTask;
+import com.agh.is.systemmonitor.resolvers.network.ServerParameters;
 import com.agh.is.systemmonitor.services.AsyncTaskResult;
 import com.agh.is.systemmonitor.views.LoginButtonOnClickListener;
 import com.agh.is.systemmonitor.views.LoginView;
@@ -45,7 +47,16 @@ public class LoginScreen extends SystemMonitorActivity  {
 	private Animation logoViewAnimation; 
 	private Animation loginSectionAnimation;
 	private DialogWindowsManager dialogWindowManager;
+	private boolean isAnimationOn = true;
 
+	public void turnOnAnimation() {
+		isAnimationOn = true;
+	}
+	
+	public void turnOffAnimation() {
+		isAnimationOn = false;
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,8 +73,10 @@ public class LoginScreen extends SystemMonitorActivity  {
 
 		dialogWindowManager = new DialogWindowsManager(this);
 		loginSection.setVisibility(View.INVISIBLE);
-		logoViewAnimation.setAnimationListener(new LogoViewAnimationListener());
-		logoView.startAnimation(logoViewAnimation);
+		if (isAnimationOn) {
+			logoViewAnimation.setAnimationListener(new LogoViewAnimationListener());
+			logoView.startAnimation(logoViewAnimation);
+		}
 		loginView.setLoginClickListener(loginListener);
 	}
 
@@ -111,86 +124,12 @@ public class LoginScreen extends SystemMonitorActivity  {
 
 	private LoginButtonOnClickListener loginListener = new LoginButtonOnClickListener() {
 		@Override
-		public void onClick(String email, String password) {
-			dialogWindowManager.showProgressDialog("Loguję użytkownika");
-			new LoginUserOnServerTask(email, password).execute(new Void[]{});
-		}
-	};
-
-	private class LoginUserOnServerTask extends AsyncTask<Void, Void, AsyncTaskResult<String>> {
-
-		public LoginUserOnServerTask(String login, String password) {
+		public void onClick(String login, String password, String host) {
 			LoginScreen.login = login;
 			LoginScreen.password = password;
+			LoginScreen.host = host;
+			new LoginUserOnServerTask(LoginScreen.this, dialogWindowManager, 
+					new ServerParameters.ServerParametersBuilder().login(login).password(password).host(host)).execute(new Void[]{});
 		}
-
-		@Override
-		protected AsyncTaskResult<String> doInBackground(Void... params) {
-			try {
-				String response = loginUser("http://aes.srebrny.pl/?login="+login+"&pass="+password);
-				return new AsyncTaskResult<String>(response);
-			} catch (IOException e) {
-				return new AsyncTaskResult<String>(e, "Logowanie nie powiodło się (problem z połączeniem)");
-			}
-		}
-
-		@Override
-		protected void onPostExecute(AsyncTaskResult<String> result) {
-			dialogWindowManager.hideProgressDialog();
-			if (result.getError() != null) {
-				dialogWindowManager.showFailureMessage(result.errorMessage());
-
-			} else {
-				if (result.getResult().contains("error")) {
-					String response = result.getResult();
-					Gson gson = new Gson();
-					ServerError err = (ServerError)gson.fromJson(response, ServerError.class);
-					dialogWindowManager.showFailureMessage("Logowanie nie powiodło się : " + err.error); 
-				}
-				else {
-					dialogWindowManager.showSuccessfulMessage("Logowanie powiodło się", new OnClickListener() {
-
-						@Override
-						public void onClick(View v) {
-							Intent i = new Intent(getBaseContext(), MainScreen.class);
-							i.putExtra("parentID", "0");
-							startActivity(i);
-						}
-					});
-				}
-			}
-			super.onPostExecute(result);
-		}
-
-		public String loginUser(String path) throws IOException  {
-			InputStream contentStream = null;
-			try {
-				contentStream = getStreamWithServerResponse(new HttpGet(path));
-				return CharStreams.toString(new InputStreamReader(contentStream));
-			}
-			finally {
-				Closeables.closeQuietly(contentStream);
-			}
-		}
-
-
-		private InputStream getStreamWithServerResponse(HttpUriRequest request) throws ClientProtocolException, IOException {
-			HttpResponse response = getServerResponse(request);
-			HttpEntity entity = response.getEntity();
-			return entity == null ? null : entity.getContent();
-		}
-
-
-		private HttpResponse getServerResponse(HttpUriRequest request) throws ClientProtocolException, IOException {
-			DefaultHttpClient httpClient = new DefaultHttpClient();
-			HttpContext httpContext = new BasicHttpContext();
-			HttpResponse response = httpClient.execute(request, httpContext);
-			return response;
-		}
-
-	}
-
-	class ServerError {
-		String error;
-	}
+	};
 }

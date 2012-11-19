@@ -16,13 +16,14 @@ public class AgentInformationFragment extends RoboFragment{
 	
 //	@InjectView(R.id.agent_information_temp_view) private TextView tempView;
 //	@InjectView(R.id.agent_information_cpu_thermometer_view) private ThermometerView cputTempView;
-//	@InjectView(R.id.agent_information_hd_thermometer_view) private ThermometerView hdTempView;
+	private ThermometerView hdTempView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return (View)inflater.inflate(R.layout.agent_information,
+		View layout = (View)inflater.inflate(R.layout.agent_information,
 		        container, false);
+		ThermometerView hdTempView;
 	}
 	
 	public void setAgentData(Agent agent, AgentInformation agentInfo) {

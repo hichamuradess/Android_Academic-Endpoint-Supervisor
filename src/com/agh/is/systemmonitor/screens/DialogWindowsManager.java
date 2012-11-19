@@ -60,12 +60,12 @@ public class DialogWindowsManager {
 		}
 	}
 	
-	void showProgressDialog(String title) {
+	public void showProgressDialog(String title) {
 		this.progressDialogText = title;
 		showDialogOnUiThread(PROGRESS_DIALOG_ID);
 	}
 
-	void hideProgressDialog() {
+	public void hideProgressDialog() {
 		dismissDialogOnUiThread(progressDialog);
 	}
 
@@ -80,13 +80,13 @@ public class DialogWindowsManager {
 		showDialogOnUiThread(OPERATION_SUCCESSFUL_DIALOG_ID);
 	}
 	
-	void showSuccessfulMessage(String message, OnClickListener okButtonListener) {
+	public void showSuccessfulMessage(String message, OnClickListener okButtonListener) {
 		this.okButtonListener = okButtonListener;
 		this.operationResultDialogText = message;
 		showDialogOnUiThread(OPERATION_SUCCESSFUL_DIALOG_ID);
 	}
 
-	void showFailureMessage(String message) {
+	public void showFailureMessage(String message) {
 		this.okButtonListener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
