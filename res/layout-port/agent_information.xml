@@ -1,62 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/primary_1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/primary_1"
     android:orientation="vertical" >
+    
+       <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" 
+        >
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/agent_information_cpu_usage"
+        <TabWidget
+            android:id="@android:id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/secondary_4"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Zużycie procesora"
-            android:textColor="@color/label_font"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_weight="0"
+            android:orientation="horizontal" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
 
+    </TabHost>
+    
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/agent_information_hd_temp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/secondary_4"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Temperatura dysku"
-            android:textColor="@color/label_font"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+        >
+			<TextView 
+		        android:id="@+id/agent_information_cpu_usage"
+		        android:background="@color/secondary_4"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="40sp"
+		        android:textColor="@color/label_font"
+		        android:text="Zużycie procesora"
+		        android:textStyle="bold"
+		    />
+        
     </LinearLayout>
-
+	
+    
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/agent_information_disc_usage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/secondary_4"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Zużycie dysku"
-            android:textColor="@color/label_font"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+        >
+			<TextView 
+		        android:id="@+id/agent_information_hd_temp"
+		        android:background="@color/secondary_4"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="40sp"
+		        android:textColor="@color/label_font"
+		        android:text="Temperatura dysku"
+		        android:textStyle="bold"
+		    />
+        
     </LinearLayout>
-
+    
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+        >
+			<TextView 
+		        android:id="@+id/agent_information_disc_usage"
+		        android:background="@color/secondary_4"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="40sp"
+		        android:textColor="@color/label_font"
+		        android:text="Zużycie dysku"
+		        android:textStyle="bold"
+		    />
+        
+    </LinearLayout>
 </LinearLayout>
+
