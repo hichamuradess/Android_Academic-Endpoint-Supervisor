@@ -15,16 +15,16 @@ import android.widget.TextView;
 import com.agh.is.systemmonitor.R;
 import com.agh.is.systemmonitor.domain.AgentInformation;
 
-public class CpuUsageView extends LinearLayout {
+public class HdTempView extends LinearLayout {
 
-	private static final int LAYOUT_ID = R.layout.cpu_usage;
+	private static final int LAYOUT_ID = R.layout.hd_temp_view;
 
-	private TextView cpuUsageDateField;
-	private TextView cpuUsageValueField;
-	private TextView cpuUsageHistoryField;
+	private TextView hdTempDateField;
+	private ThermometerView hdTempValueField;
+	private TextView hdTempHistoryField;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 
-	public CpuUsageView(Context context, AgentInformation agentInfo) {
+	public HdTempView(Context context, AgentInformation agentInfo) {
 		super(context);
 		initialize(agentInfo);
 	}
@@ -34,16 +34,11 @@ public class CpuUsageView extends LinearLayout {
 		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(service);	
 		inflater.inflate(LAYOUT_ID, this, true);
 
-		cpuUsageDateField = (TextView)findViewById(R.id.agent_information_cpu_usage_date);
-		cpuUsageValueField = (TextView)findViewById(R.id.agent_information_cpu_usage_value);
-		cpuUsageHistoryField = (TextView)findViewById(R.id.agent_information_cpu_usage_history);
+		hdTempDateField = (TextView)findViewById(R.id.agent_information_hd_temp_date);
+		hdTempValueField = (ThermometerView)findViewById(R.id.agent_information_hd_temp_value);
+		hdTempHistoryField = (TextView)findViewById(R.id.agent_information_hd_temp_history);
 		
-		cpuUsageDateField.setText(dateFormat.format(new Date(agentInfo.getInsertTime())));
-		cpuUsageValueField.setText(agentInfo.getCpuTemp() + "%");
-		cpuUsageHistoryField.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-			}
-		});
+		hdTempDateField.setText(dateFormat.format(new Date(agentInfo.getInsertTime())));
+		hdTempValueField.setTemperature(agentInfo.getHdTemp());
 	}
 }

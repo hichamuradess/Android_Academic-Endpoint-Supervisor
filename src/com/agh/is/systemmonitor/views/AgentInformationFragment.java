@@ -60,7 +60,7 @@ public class AgentInformationFragment extends RoboFragment{
         hdTempTab.setContent(new TabContentFactory() {
 			@Override
 			public View createTabContent(String tag) {
-				return new TextView(getActivity().getBaseContext());
+				return new HdTempView(getActivity().getBaseContext(), agentInfo);
 			}
 		});
         tabHost.addTab(hdTempTab);
@@ -72,7 +72,7 @@ public class AgentInformationFragment extends RoboFragment{
         discUsageTab.setContent(new TabContentFactory() {
 			@Override
 			public View createTabContent(String tag) {
-				return new TextView(getActivity().getBaseContext());
+				return new DiskUsageView(getActivity().getBaseContext(), agentInfo);
 			}
 		});
         tabHost.addTab(discUsageTab);

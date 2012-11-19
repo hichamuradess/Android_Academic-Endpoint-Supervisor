@@ -32,60 +32,6 @@
     </LinearLayout>
 
     </TabHost>
-    
-    <LinearLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-        >
-			<TextView 
-		        android:id="@+id/agent_information_cpu_usage"
-		        android:background="@color/secondary_4"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:textSize="40sp"
-		        android:textColor="@color/label_font"
-		        android:text="Zużycie procesora"
-		        android:textStyle="bold"
-		    />
-        
-    </LinearLayout>
-	
-    
-    <LinearLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-        >
-			<TextView 
-		        android:id="@+id/agent_information_hd_temp"
-		        android:background="@color/secondary_4"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:textSize="40sp"
-		        android:textColor="@color/label_font"
-		        android:text="Temperatura dysku"
-		        android:textStyle="bold"
-		    />
-        
-    </LinearLayout>
-    
-    <LinearLayout
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-        >
-			<TextView 
-		        android:id="@+id/agent_information_disc_usage"
-		        android:background="@color/secondary_4"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:textSize="40sp"
-		        android:textColor="@color/label_font"
-		        android:text="Zużycie dysku"
-		        android:textStyle="bold"
-		    />
-        
-    </LinearLayout>
+   
 </LinearLayout>
 
