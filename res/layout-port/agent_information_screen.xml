@@ -2,14 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/login_view_logo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="0.2"
+        layout="@layout/logo" />
 
     <fragment
         android:id="@+id/agent_information_screen_description"
         android:name="com.agh.is.systemmonitor.views.AgentInformationFragment"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2" >
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8" >
     </fragment>
 
 </LinearLayout>
