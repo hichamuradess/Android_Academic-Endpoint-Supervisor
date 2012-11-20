@@ -37,7 +37,8 @@ public class JSONToDataResolver {
 
 	public AgentInformation resolveAgentInformation(String jsonString) {
 		if (!jsonString.equals("[]")) { 
-			return gson.fromJson(new StringReader(jsonString), agentInformationType);
+			List<AgentInformation> info = gson.fromJson(new StringReader(jsonString), allInformationsAboutAgentType);
+			return info.get(0);
 		} else {
 			return null;
 		}
