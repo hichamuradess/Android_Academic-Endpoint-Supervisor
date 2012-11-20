@@ -1,18 +1,22 @@
 package com.agh.is.systemmonitor.resolvers.network;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentInformation;
+import com.agh.is.systemmonitor.domain.AgentInformationDataSet;
+import com.agh.is.systemmonitor.domain.AgentService;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.AgentInformationScreen;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.services.AsyncTaskResult;
 import com.agh.is.systemmonitor.views.AgentInformationFragment;
 
-public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, AsyncTaskResult<AgentInformation>> {
+public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, AsyncTaskResult<AgentInformationDataSet>> {
 
 	private Agent agent; 
 	private DialogWindowsManager dialogsManager;
@@ -30,37 +34,38 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 	}
 
 	@Override
-	protected AsyncTaskResult<AgentInformation> doInBackground(Agent... params) {
+	protected AsyncTaskResult<AgentInformationDataSet> doInBackground(Agent... params) {
 		try {
 			dialogsManager.showProgressDialog("Pobieram informacje o agencie : " + agent.getName());
 			AgentInformation info = serverDataDownloader.downloadAgentInformation(paramsBuilder);
-			return new AsyncTaskResult<AgentInformation>(info);
+			List<AgentService> services = serverDataDownloader.downloadAgentInformationDataSet(paramsBuilder);
+			return new AsyncTaskResult<AgentInformationDataSet>(new AgentInformationDataSet(info, services));
 		} catch (ResolvingException e) {
-			return new AsyncTaskResult<AgentInformation>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
+			return new AsyncTaskResult<AgentInformationDataSet>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
 		}
 	}
 
-	protected void onPostExecute(AsyncTaskResult<AgentInformation> response) {
+	protected void onPostExecute(AsyncTaskResult<AgentInformationDataSet> response) {
 		dialogsManager.hideProgressDialog();
 		if (response.getError() != null) {
 			dialogsManager.showFailureMessage("Operacja nie powiodła się");
 		}
 		else {
 			if (response.getResult() != null) {
-				showAgentInformation(response);
+				showAgentInformationDataSet(response);
 			} else {
 				dialogsManager.showInformationalMessage("Brak informacji o agencie");
 			}
 		}
 	};
 
-	private void showAgentInformation(AsyncTaskResult<AgentInformation> response) {
+	private void showAgentInformationDataSet(AsyncTaskResult<AgentInformationDataSet> response) {
 		if (infoFragment != null && infoFragment.isInLayout()) {
 			infoFragment.setAgentData(agent, response.getResult(), dialogsManager);
 		} else {
 			Intent intent = new Intent(context, AgentInformationScreen.class);
 			intent.putExtra("agent", agent);
-			intent.putExtra("agentInformation",response.getResult()); 
+			intent.putExtra("AgentInformationDataSet",response.getResult()); 
 			context.startActivity(intent);
 		}
 

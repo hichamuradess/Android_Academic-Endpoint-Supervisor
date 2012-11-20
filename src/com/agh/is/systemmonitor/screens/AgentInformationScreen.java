@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import com.agh.is.systemmonitor.R;
 import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentInformation;
+import com.agh.is.systemmonitor.domain.AgentInformationDataSet;
 import com.agh.is.systemmonitor.views.AgentInformationFragment;
 import com.agh.is.systemmonitor.views.LoginView;
 
@@ -43,7 +44,7 @@ public class AgentInformationScreen extends SystemMonitorActivity {
 		if (intent != null) {
 			dialogWindowManager = new DialogWindowsManager(this);
 			Agent agent = intent.getParcelableExtra("agent");
-			AgentInformation agentInfo = intent.getParcelableExtra("agentInformation");
+			AgentInformationDataSet agentInfo = intent.getParcelableExtra("AgentInformationDataSet");
 			infoFragment.setAgentData(agent, agentInfo, dialogWindowManager);
 		}
 	}

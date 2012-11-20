@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.agh.is.systemmonitor.R;
 import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentInformation;
+import com.agh.is.systemmonitor.domain.AgentInformationDataSet;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 
 public class AgentInformationFragment extends RoboFragment{
@@ -40,9 +41,9 @@ public class AgentInformationFragment extends RoboFragment{
 		return layout;
 	}
 
-	public void setAgentData(Agent agent, AgentInformation agentInfo, DialogWindowsManager dialogManager) {
+	public void setAgentData(Agent agent, AgentInformationDataSet agentInfoData, DialogWindowsManager dialogManager) {
 		this.agent = agent;
-		this.agentInfo = agentInfo;
+		this.agentInfo = agentInfoData.getAgentInfo();
 		this.dialogManager= dialogManager;
 		titleLabel.setText(agent.getName());
 		tabHost.setup();
