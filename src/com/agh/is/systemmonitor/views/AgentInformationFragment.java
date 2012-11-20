@@ -90,7 +90,6 @@ public class AgentInformationFragment extends RoboFragment{
 	}
 	
 	private void setUpTabWidget() {
-        tabHost.getTabWidget().setCurrentTab(1);
         setUpTab(0);
         setUpTab(1);
         setUpTab(2);
