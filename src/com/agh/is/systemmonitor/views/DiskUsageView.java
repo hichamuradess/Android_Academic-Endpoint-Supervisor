@@ -3,13 +3,16 @@ package com.agh.is.systemmonitor.views;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.agh.is.systemmonitor.R;
+import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentInformation;
+import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 
 public class DiskUsageView extends LinearLayout {
 
@@ -18,9 +21,11 @@ public class DiskUsageView extends LinearLayout {
 	private TextView discUsageDateField;
 	private TextView discUsageHistoryField;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+	private Activity activity;
 
-	public DiskUsageView(Context context, AgentInformation agentInfo) {
-		super(context);
+	public DiskUsageView(Activity activity, DialogWindowsManager dialogManager, Agent agent, AgentInformation agentInfo) {
+		super(activity);
+		this.activity = activity;
 		initialize(agentInfo);
 	}
 

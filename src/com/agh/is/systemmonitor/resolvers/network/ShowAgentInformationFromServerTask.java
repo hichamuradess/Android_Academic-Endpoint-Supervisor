@@ -52,7 +52,7 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 
 	private void showAgentInformation(AsyncTaskResult<AgentInformation> response) {
 		if (infoFragment != null && infoFragment.isInLayout()) {
-			infoFragment.setAgentData(agent, response.getResult());
+			infoFragment.setAgentData(agent, response.getResult(), dialogsManager);
 		} else {
 			Intent intent = new Intent(context, AgentInformationScreen.class);
 			intent.putExtra("agent", agent);

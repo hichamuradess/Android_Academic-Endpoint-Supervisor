@@ -69,7 +69,7 @@ public class DialogWindowsManager {
 		dismissDialogOnUiThread(progressDialog);
 	}
 
-	void showSuccessfulMessage(String message) {
+	 void showSuccessfulMessage(String message) {
 		this.okButtonListener = new OnClickListener() {
 			@Override
 			public void onClick(View v) {

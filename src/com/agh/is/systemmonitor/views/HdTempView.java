@@ -3,17 +3,16 @@ package com.agh.is.systemmonitor.views;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.app.Activity;
 import android.content.Context;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.agh.is.systemmonitor.R;
+import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentInformation;
+import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 
 public class HdTempView extends LinearLayout {
 
@@ -23,9 +22,11 @@ public class HdTempView extends LinearLayout {
 	private ThermometerView hdTempValueField;
 	private TextView hdTempHistoryField;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+	private Activity activity;
 
-	public HdTempView(Context context, AgentInformation agentInfo) {
-		super(context);
+	public HdTempView(Activity activity, DialogWindowsManager dialogManager, Agent agent, AgentInformation agentInfo) {
+		super(activity);
+		this.activity = activity;
 		initialize(agentInfo);
 	}
 
