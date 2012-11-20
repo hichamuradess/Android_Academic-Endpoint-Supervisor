@@ -22,6 +22,7 @@ public class RecordRowView extends RelativeLayout{
 	private Record record = null;
 	private TextView recordNameLabel = null;
 	private ImageView recordThumbImage = null;
+	private TextView recordDomainLabel = null;
 	
 	public RecordRowView(Context context, Record record, final RecordClickListener listener) {
 		super(context);
@@ -43,23 +44,27 @@ public class RecordRowView extends RelativeLayout{
 	public void setRecord(Record Record) {
 		this.record = Record;
 		recordNameLabel.setText(Record.getName());
-		setIcon();
+		setClassSpecificInformation();
 	}
 	
-	public void setIcon() {
+	public void setClassSpecificInformation() {
 		if (record instanceof Agent) {
+			Agent a = (Agent)record;
 			recordThumbImage.setBackgroundResource(R.drawable.agent_icon);
+			recordDomainLabel.setVisibility(View.VISIBLE);
+			recordDomainLabel.setText(a.getDomain());
 		} else {
 			recordThumbImage.setBackgroundResource(R.drawable.group_of_agents_icon);
+			recordDomainLabel.setVisibility(View.GONE);
 		}
 	}
 	
 	private void initializeViews() {
 		ViewGroup layout = getLayout();
 		recordNameLabel = (TextView)layout.findViewById(R.id.record_row_view_record_name);
-		recordNameLabel.setText(record.getName());
 		recordThumbImage = (ImageView)layout.findViewById(R.id.record_row_view_record_photo);
-		setIcon();
+		recordDomainLabel = (TextView)layout.findViewById(R.id.record_row_view_record_domain);
+		setRecord(record);
 	}
 	
 	private ViewGroup getLayout() {

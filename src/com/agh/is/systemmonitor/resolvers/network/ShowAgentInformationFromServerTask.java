@@ -49,7 +49,7 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 			if (response.getResult() != null) {
 				showAgentInformation(response);
 			} else {
-				dialogsManager.showFailureMessage("Brak informacji o agencie");
+				dialogsManager.showInformationalMessage("Brak informacji o agencie");
 			}
 		}
 	};

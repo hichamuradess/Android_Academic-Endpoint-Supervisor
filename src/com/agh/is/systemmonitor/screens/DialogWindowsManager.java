@@ -15,7 +15,8 @@ public class DialogWindowsManager {
 	
 	private static final int PROGRESS_DIALOG_ID = 0; 
 	private static final int OPERATION_SUCCESSFUL_DIALOG_ID = 1;
-	private static final int OPERATION_FIALED_DIALOG_ID = 2;
+	private static final int OPERATION_FAILED_DIALOG_ID = 2;
+	private static final int OPERATION_INFORMATIONAL_DIALOG_ID = 3;
 
 	private ProgressDialog progressDialog;
 	private String progressDialogText;
@@ -33,7 +34,10 @@ public class DialogWindowsManager {
 			case PROGRESS_DIALOG_ID: {
 				return progressDialog = new ProgressDialog(context); 
 			}
-			case OPERATION_FIALED_DIALOG_ID : {
+			case OPERATION_FAILED_DIALOG_ID : {
+				return operationResultDialog = new OperationResultDialog(context);
+			}
+			case OPERATION_INFORMATIONAL_DIALOG_ID : {
 				return operationResultDialog = new OperationResultDialog(context);
 			}
 			case OPERATION_SUCCESSFUL_DIALOG_ID : {
@@ -49,8 +53,12 @@ public class DialogWindowsManager {
 				((ProgressDialog)dialog).setText(progressDialogText);
 				break;
 			}
-			case OPERATION_FIALED_DIALOG_ID: {
+			case OPERATION_FAILED_DIALOG_ID: {
 				((OperationResultDialog)dialog).showFailureMessage(operationResultDialogText, okButtonListener);
+				break;
+			}
+			case OPERATION_INFORMATIONAL_DIALOG_ID: {
+				((OperationResultDialog)dialog).showInformationalMessage(operationResultDialogText, okButtonListener);
 				break;
 			}
 			case OPERATION_SUCCESSFUL_DIALOG_ID: {
@@ -69,17 +77,6 @@ public class DialogWindowsManager {
 		dismissDialogOnUiThread(progressDialog);
 	}
 
-	 void showSuccessfulMessage(String message) {
-		this.okButtonListener = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				hideOperationResultDialog();
-			}
-		};
-		this.operationResultDialogText = message;
-		showDialogOnUiThread(OPERATION_SUCCESSFUL_DIALOG_ID);
-	}
-	
 	public void showSuccessfulMessage(String message, OnClickListener okButtonListener) {
 		this.okButtonListener = okButtonListener;
 		this.operationResultDialogText = message;
@@ -94,15 +91,21 @@ public class DialogWindowsManager {
 			}
 		};
 		this.operationResultDialogText = message;
-		showDialogOnUiThread(OPERATION_FIALED_DIALOG_ID);
+		showDialogOnUiThread(OPERATION_FAILED_DIALOG_ID);
 	}
 	
-	void showFailureMessage(String message, OnClickListener okButtonListener) {
-		this.okButtonListener = okButtonListener;
+	
+	public void showInformationalMessage(String message) {
+		this.okButtonListener = new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				hideOperationResultDialog();
+			}
+		};
 		this.operationResultDialogText = message;
-		showDialogOnUiThread(OPERATION_FIALED_DIALOG_ID);
+		showDialogOnUiThread(OPERATION_INFORMATIONAL_DIALOG_ID);
 	}
-
+	
 	void hideOperationResultDialog() {
 		dismissDialogOnUiThread(operationResultDialog);
 	}
