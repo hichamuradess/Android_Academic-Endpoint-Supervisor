@@ -33,7 +33,7 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 	protected AsyncTaskResult<AgentInformation> doInBackground(Agent... params) {
 		try {
 			dialogsManager.showProgressDialog("Pobieram informacje o agencie : " + agent.getName());
-			AgentInformation info = serverDataDownloader.downloadAgentsInformation(paramsBuilder).get(0);
+			AgentInformation info = serverDataDownloader.downloadAgentInformation(paramsBuilder);
 			return new AsyncTaskResult<AgentInformation>(info);
 		} catch (ResolvingException e) {
 			return new AsyncTaskResult<AgentInformation>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
@@ -46,7 +46,11 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 			dialogsManager.showFailureMessage("Operacja nie powiodła się");
 		}
 		else {
-			showAgentInformation(response);
+			if (response.getResult() != null) {
+				showAgentInformation(response);
+			} else {
+				dialogsManager.showFailureMessage("Brak informacji o agencie");
+			}
 		}
 	};
 

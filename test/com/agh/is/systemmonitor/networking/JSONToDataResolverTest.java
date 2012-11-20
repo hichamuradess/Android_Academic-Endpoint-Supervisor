@@ -36,7 +36,7 @@ public class JSONToDataResolverTest {
 		String json = "[{\"id\":\"1\",\"server_id\":\"1\",\"insert_time\":\"1\",\"cpu_temp\":\"1.1\",\"hd_temp\":\"1.2\",\"disk_free\":\"0\",\"disk_full\":\"100\"}]";
 		
 		//when
-		List<AgentInformation> agentsInfo = underTest.resolveAgentsInformations(json);
+		List<AgentInformation> agentsInfo = underTest.resolveAllAvailableInformationsAboutAgent(json);
 		
 		//then
 		assertThat(agentsInfo).contains(new AgentInformation(1, 1, 1, 1.1f, 1.2f, 0, 100));

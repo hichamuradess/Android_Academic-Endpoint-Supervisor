@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondary_5"
+    android:background="@android:color/black"
     android:orientation="vertical" >
 
     <ListView
         android:id="@+id/agents_list_agents_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/secondary_5"
+        android:drawSelectorOnTop="true"
+        android:listSelector="@drawable/list_selector"
         android:orientation="vertical" >
     </ListView>
 

@@ -30,7 +30,7 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 	protected AsyncTaskResult<List<AgentInformation>> doInBackground(Void... params) {
 		try {
 			dialogsManager.showProgressDialog("Pobieram historię dla agenta : " + agent.getName());
-			List<AgentInformation> info = serverDataDownloader.downloadAgentsInformation(paramsBuilder);
+			List<AgentInformation> info = serverDataDownloader.downloadAllInformationsAboutAgent(paramsBuilder);
 			return new AsyncTaskResult<List<AgentInformation>>(info);
 		} catch (ResolvingException e) {
 			return new AsyncTaskResult<List<AgentInformation>>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
