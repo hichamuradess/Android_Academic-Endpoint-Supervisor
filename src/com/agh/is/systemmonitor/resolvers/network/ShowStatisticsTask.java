@@ -67,7 +67,7 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 						chartBuilder = new CpuUsageHistChartBuilder(response, "czas [min.]", "%");
 					}
 					else if (column.equals("disk_usage")){
-						chartBuilder = new HdUsageHistChartBuilder(response, "czas [min.]", "%");
+						chartBuilder = new HdUsageHistChartBuilder(response, "czas [min.]", "MB");
 					}
 					final HistChartBuilder finalBUilder = chartBuilder;
 					if (chartBuilder != null)

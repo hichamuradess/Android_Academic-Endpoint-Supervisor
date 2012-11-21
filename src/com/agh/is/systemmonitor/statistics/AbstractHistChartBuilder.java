@@ -46,7 +46,7 @@ public abstract class AbstractHistChartBuilder implements HistChartBuilder{
 	private XYMultipleSeriesRenderer createRenderer()
 	{
 		XYSeriesRenderer renderer = new XYSeriesRenderer();
-		renderer.setColor(Color.WHITE);
+		renderer.setColor(Color.YELLOW);
 		renderer.setPointStyle(PointStyle.DIAMOND);
 		renderer.setFillPoints(true);
 		XYMultipleSeriesRenderer multipleSeriesRenderer = new XYMultipleSeriesRenderer();

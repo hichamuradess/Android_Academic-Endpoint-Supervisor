@@ -52,6 +52,7 @@ public class DiskUsageView extends LinearLayout {
 		HdUsagePieChartViewBuilder builder = new HdUsagePieChartViewBuilder();
 		pieChartView = builder.createPieChartView(activity.getBaseContext(), agentInfo.getDiskUsedSpace(), agentInfo.getDiskFreeSpace());
 		String service = Context.LAYOUT_INFLATER_SERVICE;
+		this.addView(pieChartView);
 		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(service);
 		inflater.inflate(LAYOUT_ID, this, true);
 

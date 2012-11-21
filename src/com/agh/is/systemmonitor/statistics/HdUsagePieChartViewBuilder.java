@@ -31,7 +31,7 @@ public class HdUsagePieChartViewBuilder {
 		}
 		renderer.setChartTitle("Zużycie dysku");
 		renderer.setChartTitleTextSize(7);
-		renderer.setZoomButtonsVisible(true);
+		renderer.setZoomEnabled(false);
 
 		View view = ChartFactory.getPieChartView(context, series, renderer);
 		return view;
