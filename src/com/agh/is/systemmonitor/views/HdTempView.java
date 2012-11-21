@@ -47,20 +47,20 @@ public class HdTempView extends LinearLayout {
 		hdTempDateField.setText(dateFormat.format(new Date(agentInfo.getInsertTime())));
 		hdTempValueField.setTemperature(agentInfo.getHdTemp());
 		
-		hdTempHistoryField.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				activity.runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						new ShowStatisticsTask(activity.getBaseContext(), dialogManager, agent, 
-								new ServerParametersBuilder().login(SystemMonitorActivity.login)
-								.password(SystemMonitorActivity.password)
-								.host(SystemMonitorActivity.host).recordId(String.valueOf(agent.getId()))).execute(new Void[]{});
-					}
-				});
-			}
-		});
+//		hdTempHistoryField.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				activity.runOnUiThread(new Runnable() {
+//					@Override
+//					public void run() {
+//						new ShowStatisticsTask(activity.getBaseContext(), dialogManager, agent, 
+//								new ServerParametersBuilder().login(SystemMonitorActivity.login)
+//								.password(SystemMonitorActivity.password)
+//								.host(SystemMonitorActivity.host).recordId(String.valueOf(agent.getId()))).execute(new Void[]{});
+//					}
+//				});
+//			}
+//		});
 		
 	}
 }

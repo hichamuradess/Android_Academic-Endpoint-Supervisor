@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.sax.StartElementListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -59,17 +58,16 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 					
 					HistChartBuilder chartBuilder = null;
 					if (column.equals("hd_temp")){
-						chartBuilder = new HdTempHistChartBuilder();
+						chartBuilder = new HdTempHistChartBuilder(response);
 					}
 					else if (column.equals("cpu_usage")){
-						chartBuilder = new CpuUsageHistChartBuilder();
+						chartBuilder = new CpuUsageHistChartBuilder(response);
 					}
 					else if (column.equals("disk_usage")){
-						chartBuilder = new HdUsageHistChartBuilder();
+						chartBuilder = new HdUsageHistChartBuilder(response);
 					}
 					if (chartBuilder != null)
 					{ 
-						chartBuilder.extractDatasetFromReponse(response);
 						context.startActivity(chartBuilder.getIntent(context));
 					}
 				 	

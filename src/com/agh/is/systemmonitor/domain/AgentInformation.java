@@ -1,11 +1,11 @@
 package com.agh.is.systemmonitor.domain;
 
+import com.google.common.primitives.Ints;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class AgentInformation implements Parcelable{
-	
-
+public class AgentInformation implements Parcelable, Comparable<AgentInformation>{
 
 	private final int id;
 	private final int server_id;
@@ -135,5 +135,9 @@ public class AgentInformation implements Parcelable{
 		return true;
 	}
 
-
+	@Override
+	public int compareTo(AgentInformation another) {
+		long anothersTime = another.getInsertTime();
+		return Ints.checkedCast(insert_time-anothersTime);
+	}
 }
