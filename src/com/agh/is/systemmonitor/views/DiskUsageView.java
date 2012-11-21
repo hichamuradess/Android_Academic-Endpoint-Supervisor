@@ -70,7 +70,7 @@ public class DiskUsageView extends LinearLayout {
 					public void run() {
 						new ShowStatisticsTask(activity, dialogManager, agent, 
 								new ServerParametersBuilder().login(SystemMonitorActivity.login)
-								.password(SystemMonitorActivity.password).column("disk_usage")
+								.password(SystemMonitorActivity.password).column("disk_full")
 								.host(SystemMonitorActivity.host).recordId(String.valueOf(agent.getId()))).execute(new Void[]{});
 					}
 				});
