@@ -20,6 +20,11 @@ public class ParametersToPathResolver {
 		ServerParameters parameters =parametersBuilder.build();
 		return parameters.getHost() + resolveCredentials(parameters)+ "&do=display_groups" + resolveCommonParameters(parameters);
 	}
+	
+	public String resolveAgentInformationForStatisticsDownloadPath(ServerParametersBuilder parametersBuilder) {
+		ServerParameters parameters =parametersBuilder.recordsLimit("1").build();
+		return parameters.getHost() +  resolveCredentials(parameters) + "&do=display_system" + resolveCommonParameters(parameters);
+	}
 
 	public String resolveAgentsInformationDownloadPath(ServerParametersBuilder parametersBuilder) {
 		ServerParameters parameters =parametersBuilder.column("all").recordsLimit("1").build();

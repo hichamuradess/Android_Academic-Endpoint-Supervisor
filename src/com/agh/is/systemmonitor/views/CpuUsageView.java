@@ -51,7 +51,7 @@ public class CpuUsageView extends LinearLayout {
 					public void run() {
 						new ShowStatisticsTask(activity, dialogManager, agent, 
 								new ServerParametersBuilder().login(SystemMonitorActivity.login)
-								.password(SystemMonitorActivity.password)
+								.password(SystemMonitorActivity.password).column("cpu_usage")
 								.host(SystemMonitorActivity.host).recordId(String.valueOf(agent.getId()))).execute(new Void[]{});
 					}
 				});

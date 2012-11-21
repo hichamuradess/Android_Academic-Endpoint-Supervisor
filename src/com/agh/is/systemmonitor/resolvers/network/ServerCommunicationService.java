@@ -61,6 +61,12 @@ public class ServerCommunicationService {
 		return agentDataResolver.resolveAllAvailableInformationsAboutAgent(downloadedJson);
 	}
 	
+	public List<AgentInformation> downloadStatisticsInformations(ServerParametersBuilder parametersBuilder) throws ResolvingException {
+		String downloadPath = paramsPathResolver.resolveAgentInformationForStatisticsDownloadPath(parametersBuilder);
+		String downloadedJson = jsonResolver.resolve(downloadPath);
+		return agentDataResolver.resolveAllAvailableInformationsAboutAgent(downloadedJson);
+	}
+	
 	public AgentInformation downloadAgentInformation(ServerParametersBuilder parametersBuilder) throws ResolvingException {
 		String downloadPath = paramsPathResolver.resolveAgentsInformationDownloadPath(parametersBuilder);
 		String downloadedJson = jsonResolver.resolve(downloadPath);

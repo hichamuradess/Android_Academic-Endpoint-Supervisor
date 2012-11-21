@@ -25,6 +25,9 @@ public class DiskUsageView extends LinearLayout {
 
 	private TextView discUsageDateField;
 	private TextView discUsageHistoryField;
+	private TextView hdTempDateField;
+	private ThermometerView hdTempValueField;
+	private TextView hdTempHistoryField;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	private Activity activity;
 
@@ -52,7 +55,29 @@ public class DiskUsageView extends LinearLayout {
 					public void run() {
 						new ShowStatisticsTask(activity, dialogManager, agent, 
 								new ServerParametersBuilder().login(SystemMonitorActivity.login)
-								.password(SystemMonitorActivity.password)
+								.password(SystemMonitorActivity.password).column("disk_usage")
+								.host(SystemMonitorActivity.host).recordId(String.valueOf(agent.getId()))).execute(new Void[]{});
+					}
+				});
+			}
+		});
+		
+		hdTempDateField = (TextView)findViewById(R.id.agent_information_hd_temp_date);
+		hdTempValueField = (ThermometerView)findViewById(R.id.agent_information_hd_temp_value);
+		hdTempHistoryField = (TextView)findViewById(R.id.agent_information_hd_temp_history);
+		
+		hdTempDateField.setText(dateFormat.format(new Date(agentInfo.getInsertTime())));
+		hdTempValueField.setTemperature(agentInfo.getHdTemp());
+		
+		hdTempHistoryField.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				activity.runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						new ShowStatisticsTask(activity, dialogManager, agent, 
+								new ServerParametersBuilder().login(SystemMonitorActivity.login)
+								.password(SystemMonitorActivity.password).column("hd_temp")
 								.host(SystemMonitorActivity.host).recordId(String.valueOf(agent.getId()))).execute(new Void[]{});
 					}
 				});
