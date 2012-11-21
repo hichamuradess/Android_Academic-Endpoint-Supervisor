@@ -56,7 +56,7 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 			dialogsManager.showFailureMessage("Operacja nie powiodła się");
 		}
 		else {
-			if (response.getResult() != null) {
+			if (response.getResult().getAgentInfo() != null) {
 				showAgentInformationDataSet(response);
 			} else {
 				dialogsManager.showInformationalMessage("Brak informacji o agencie");
@@ -73,6 +73,6 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 			intent.putExtra("AgentInformationDataSet",response.getResult()); 
 			context.startActivity(intent);
 		}
-
 	}
+	
 }
