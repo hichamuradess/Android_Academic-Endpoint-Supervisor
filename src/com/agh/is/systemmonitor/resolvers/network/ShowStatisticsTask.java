@@ -43,7 +43,7 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 		}
 	}
 
-	protected void onPostExecuteIntent(final AsyncTaskResult<List<AgentInformation>> response) {
+	protected void onPostExecute(final AsyncTaskResult<List<AgentInformation>> response) {
 		dialogsManager.hideProgressDialog();
 		if (response.getError() != null) {
 			dialogsManager.showFailureMessage("Operacja nie powiodła się");
