@@ -26,7 +26,11 @@ public class JSONToDataResolver {
 	}
 
 	public List<GroupOfAgents> resolveAgentGroups(String jsonString) {
-		return gson.fromJson(new StringReader(jsonString), groupOfAgentsType) ;
+		if (!jsonString.equals("[]")) { 
+			return gson.fromJson(new StringReader(jsonString), groupOfAgentsType) ;
+		} else {
+			return Lists.newLinkedList();
+		}
 	}
 	
 	public List<AgentInformation> resolveAllAvailableInformationsAboutAgent(String jsonString) {

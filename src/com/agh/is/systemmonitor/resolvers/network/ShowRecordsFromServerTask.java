@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 
 import com.agh.is.systemmonitor.adapters.Record;
 import com.agh.is.systemmonitor.adapters.RecordsAdapter;
+import com.agh.is.systemmonitor.domain.AgentInformation;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.screens.MainScreen;
@@ -39,6 +40,8 @@ public class ShowRecordsFromServerTask extends AsyncTask<Void, Void, AsyncTaskRe
 			return new AsyncTaskResult<List<Record>>(agents);
 		} catch (ResolvingException e) {
 			return new AsyncTaskResult<List<Record>>(e, "Pobieranie nie powiodło się (problem z połączeniem)");
+		}catch (Exception e) {
+			return new AsyncTaskResult<List<Record>>(e, "Operacja nie powiodła się");
 		}
 	}
 
@@ -64,6 +67,6 @@ public class ShowRecordsFromServerTask extends AsyncTask<Void, Void, AsyncTaskRe
 				mainScrnActivity.bindService(intent);
 			}
 		}
-		
+
 	}
 }

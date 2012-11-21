@@ -47,6 +47,8 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 			return new AsyncTaskResult<AgentInformationDataSet>(new AgentInformationDataSet(info, services));
 		} catch (ResolvingException e) {
 			return new AsyncTaskResult<AgentInformationDataSet>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
+		} catch (Exception e) {
+			return new AsyncTaskResult<AgentInformationDataSet>(e, "Operacja nie powiodła się");
 		}
 	}
 
@@ -74,5 +76,5 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 			context.startActivity(intent);
 		}
 	}
-	
+
 }

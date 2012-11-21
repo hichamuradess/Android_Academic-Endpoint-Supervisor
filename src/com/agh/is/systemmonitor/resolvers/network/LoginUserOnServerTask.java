@@ -1,10 +1,13 @@
 package com.agh.is.systemmonitor.resolvers.network;
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.agh.is.systemmonitor.domain.AgentInformation;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.screens.MainScreen;
@@ -38,6 +41,8 @@ public class LoginUserOnServerTask extends AsyncTask<Void, Void, AsyncTaskResult
 			return new AsyncTaskResult<String>(response);
 		} catch (ResolvingException e) {
 			return new AsyncTaskResult<String>(e, "Logowanie nie powiodło się (problem z połączeniem)");
+		} catch (Exception e) {
+			return new AsyncTaskResult<String>(e, "Operacja nie powiodła się");
 		}
 	}
 

@@ -42,6 +42,8 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 			return new AsyncTaskResult<List<AgentInformation>>(info);
 		} catch (ResolvingException e) {
 			return new AsyncTaskResult<List<AgentInformation>>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
+		} catch (Exception e) {
+			return new AsyncTaskResult<List<AgentInformation>>(e, "Operacja nie powiodła się");
 		}
 	}
 
