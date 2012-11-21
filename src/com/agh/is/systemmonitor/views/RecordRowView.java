@@ -54,7 +54,7 @@ public class RecordRowView extends RelativeLayout{
 			recordDomainLabel.setVisibility(View.VISIBLE);
 			recordDomainLabel.setText(a.getDomain());
 		} else {
-			recordThumbImage.setBackgroundResource(R.drawable.group_of_agents_icon);
+			recordThumbImage.setBackgroundResource(R.drawable.cloud);
 			recordDomainLabel.setVisibility(View.GONE);
 		}
 	}
