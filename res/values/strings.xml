@@ -8,4 +8,5 @@
     <string name="login_view_preogress_dialog_label">Loguję użytkownika</string> 
     <string name="login_view_successful_dialog_label">Zalogowano</string> 
     <string name="login_view_failed_dialog_label">Operacja logowania nie powiodła się</string> 
+    <string name="pie_chart_title">Zużycie dysku</string>
 </resources>

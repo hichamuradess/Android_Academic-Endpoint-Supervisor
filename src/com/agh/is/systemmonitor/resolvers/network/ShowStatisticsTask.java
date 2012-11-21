@@ -12,6 +12,10 @@ import com.agh.is.systemmonitor.domain.AgentInformation;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.services.AsyncTaskResult;
+import com.agh.is.systemmonitor.statistics.CpuUsageHistChartBuilder;
+import com.agh.is.systemmonitor.statistics.HdTempHistChartBuilder;
+import com.agh.is.systemmonitor.statistics.HdUsageHistChartBuilder;
+import com.agh.is.systemmonitor.statistics.HistChartBuilder;
 
 public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<List<AgentInformation>>> {
 
@@ -19,11 +23,13 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 	private DialogWindowsManager dialogsManager;
 	private ServerCommunicationService serverDataDownloader = new ServerCommunicationService();
 	private ServerParametersBuilder paramsBuilder;
+	private Context context;
 
 	public ShowStatisticsTask(Context context, DialogWindowsManager dialogsManager, Agent agent, ServerParametersBuilder paramsBuilder) {
 		this.dialogsManager = dialogsManager;
 		this.paramsBuilder = paramsBuilder;
 		this.agent = agent;
+		this.context = context;
 	}
 
 	@Override
@@ -37,7 +43,7 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 		}
 	}
 
-	protected void onPostExecute(AsyncTaskResult<List<AgentInformation>> response) {
+	protected void onPostExecuteIntent(final AsyncTaskResult<List<AgentInformation>> response) {
 		dialogsManager.hideProgressDialog();
 		if (response.getError() != null) {
 			dialogsManager.showFailureMessage("Operacja nie powiodła się");
@@ -49,16 +55,22 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 				public void onClick(View v) {
 					ServerParameters params = paramsBuilder.build();
 					String column = params.getColumn();
+					
+					HistChartBuilder chartBuilder = null;
 					if (column.equals("hd_temp")){
-						
+						chartBuilder = new HdTempHistChartBuilder(response);
 					}
 					else if (column.equals("cpu_usage")){
-						
+						chartBuilder = new CpuUsageHistChartBuilder(response);
 					}
 					else if (column.equals("disk_usage")){
-						
+						chartBuilder = new HdUsageHistChartBuilder(response);
 					}
-					
+					if (chartBuilder != null)
+					{ 
+						context.startActivity(chartBuilder.getIntent(context));
+					}
+				 	
 				}
 			});
 		}
