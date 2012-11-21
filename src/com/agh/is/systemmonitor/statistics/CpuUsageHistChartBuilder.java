@@ -1,5 +1,6 @@
 package com.agh.is.systemmonitor.statistics;
 
+import java.util.Date;
 import java.util.List;
 
 import org.achartengine.model.TimeSeries;
@@ -22,7 +23,7 @@ public class CpuUsageHistChartBuilder extends AbstractHistChartBuilder {
 	protected TimeSeries createSeries() {
 		TimeSeries series = new TimeSeries("Zużycie CPU");
 		for (AgentInformation agentInformation : responseList){
-			series.add(parseTimestamp(agentInformation.getInsertTime()), agentInformation.getCpuTemp());
+			series.add(new Date(agentInformation.getInsertTime()), agentInformation.getCpuTemp());
 		}
 		return series;
 	}

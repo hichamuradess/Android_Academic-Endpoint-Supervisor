@@ -1,5 +1,7 @@
 package com.agh.is.systemmonitor.statistics;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.achartengine.model.CategorySeries;
@@ -28,7 +30,7 @@ public class HdUsageHistChartBuilder extends AbstractHistChartBuilder{
 	protected TimeSeries createSeries() {
 		TimeSeries series = new TimeSeries("Zużycie dysku");
 		for (AgentInformation agentInformation : responseList){
-			series.add(agentInformation.getInsertTime(), agentInformation.getDiskUsedSpace());
+			series.add(new Date(agentInformation.getInsertTime()), agentInformation.getDiskUsedSpace());
 		}
 		return series;
 	}

@@ -33,7 +33,7 @@ public abstract class AbstractHistChartBuilder implements HistChartBuilder{
 	
 	@Override
 	public Intent getIntent(Context context) {
-		return ChartFactory.getLineChartIntent(context, createMultipleDataset(createSeries()), createRenderer()); 
+		return ChartFactory.getTimeChartIntent(context, createMultipleDataset(createSeries()), createRenderer(), "h:mm a"); 
 	}
 	
 	private XYMultipleSeriesDataset createMultipleDataset(TimeSeries series)

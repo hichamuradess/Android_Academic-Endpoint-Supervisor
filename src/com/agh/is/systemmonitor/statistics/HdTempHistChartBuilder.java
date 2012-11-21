@@ -1,11 +1,15 @@
 package com.agh.is.systemmonitor.statistics;
 
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.achartengine.model.TimeSeries;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.format.Time;
 
 import com.agh.is.systemmonitor.domain.AgentInformation;
 import com.agh.is.systemmonitor.services.AsyncTaskResult;
@@ -26,7 +30,7 @@ public class HdTempHistChartBuilder extends AbstractHistChartBuilder {
 	protected TimeSeries createSeries() {
 		TimeSeries series = new TimeSeries("Temperatura dysku");
 		for (AgentInformation agentInformation : responseList){
-			series.add(agentInformation.getInsertTime(), agentInformation.getHdTemp());
+			series.add(new Date(agentInformation.getInsertTime()), agentInformation.getHdTemp());
 		}
 		return series;
 	}
