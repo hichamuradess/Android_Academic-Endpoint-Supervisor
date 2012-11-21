@@ -11,6 +11,11 @@ import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParamet
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class ServerCommunicationService {
 	
 	private final ServerPathToJSONResolver jsonResolver;

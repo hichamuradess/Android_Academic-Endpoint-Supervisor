@@ -7,6 +7,11 @@ import android.widget.TextView;
 
 import com.agh.is.systemmonitor.R;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class ProgressDialog extends Dialog {
 
 	private static final int LAYOUT_ID = R.layout.progress_dialog;

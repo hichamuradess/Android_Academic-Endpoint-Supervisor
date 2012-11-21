@@ -13,6 +13,11 @@ import com.agh.is.systemmonitor.screens.MainScreen;
 import com.agh.is.systemmonitor.services.AsyncTaskResult;
 import com.agh.is.systemmonitor.services.ServerMonitoringService;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class ShowRecordsFromServerTask extends AsyncTask<Void, Void, AsyncTaskResult<List<Record>>> {
 
 	private ServerParametersBuilder paramsBuilder = null;

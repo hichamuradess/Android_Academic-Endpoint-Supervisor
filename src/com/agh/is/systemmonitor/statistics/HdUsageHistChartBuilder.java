@@ -12,6 +12,11 @@ import android.R;
 import android.content.Context;
 import android.content.Intent;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class HdUsageHistChartBuilder extends AbstractHistChartBuilder{
 
 	public HdUsageHistChartBuilder(

@@ -19,6 +19,11 @@ import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParamet
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.screens.SystemMonitorActivity;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class DiskUsageView extends LinearLayout {
 
 	private static final int LAYOUT_ID = R.layout.disc_usage_view;

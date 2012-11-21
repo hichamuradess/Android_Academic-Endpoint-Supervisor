@@ -18,6 +18,7 @@ import com.agh.is.systemmonitor.statistics.HdTempHistChartBuilder;
 import com.agh.is.systemmonitor.statistics.HdUsageHistChartBuilder;
 import com.agh.is.systemmonitor.statistics.HistChartBuilder;
 
+
 public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<List<AgentInformation>>> {
 
 	private Agent agent; 

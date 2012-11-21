@@ -3,7 +3,11 @@ package com.agh.is.systemmonitor.resolvers.network;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 
 
-
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class ParametersToPathResolver {
 
 	public String resolveLoginPath(ServerParametersBuilder parametersBuilder) {

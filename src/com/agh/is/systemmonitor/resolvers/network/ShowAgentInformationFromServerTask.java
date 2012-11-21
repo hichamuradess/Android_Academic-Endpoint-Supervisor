@@ -16,6 +16,11 @@ import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.services.AsyncTaskResult;
 import com.agh.is.systemmonitor.views.AgentInformationFragment;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, AsyncTaskResult<AgentInformationDataSet>> {
 
 	private Agent agent; 

@@ -16,6 +16,11 @@ import com.agh.is.systemmonitor.domain.AgentInformationDataSet;
 import com.agh.is.systemmonitor.views.AgentInformationFragment;
 import com.agh.is.systemmonitor.views.LoginView;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 @ContentView(R.layout.agent_information_screen)
 public class AgentInformationScreen extends SystemMonitorActivity {
 

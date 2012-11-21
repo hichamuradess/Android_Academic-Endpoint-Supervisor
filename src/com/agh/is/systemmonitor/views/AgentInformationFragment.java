@@ -20,6 +20,11 @@ import com.agh.is.systemmonitor.domain.AgentInformationDataSet;
 import com.agh.is.systemmonitor.domain.AgentService;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class AgentInformationFragment extends RoboFragment{
 
 	private TabHost tabHost;

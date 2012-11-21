@@ -7,6 +7,11 @@ import org.achartengine.model.TimeSeries;
 import com.agh.is.systemmonitor.domain.AgentInformation;
 import com.agh.is.systemmonitor.services.AsyncTaskResult;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class CpuUsageHistChartBuilder extends AbstractHistChartBuilder {
 	
 	public CpuUsageHistChartBuilder(
