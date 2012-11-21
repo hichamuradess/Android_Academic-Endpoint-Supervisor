@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.agh.is.systemmonitor.adapters.Record;
 import com.agh.is.systemmonitor.resolvers.network.ResolvingException;
@@ -25,8 +26,7 @@ public class ServerMonitoringService extends Service {
 	private final IBinder binder = new LocalBinder();
 	private Timer updatingTimer;
 	private ServerCommunicationService serverDataDownloader;
-	public static final String DOWNLOAD_LINK = "http://aes.srebrny.pl/";
-	private ServerParametersBuilder agentParametersBuilder = new ServerParametersBuilder().login(SystemMonitorActivity.login).password(SystemMonitorActivity.password).host(DOWNLOAD_LINK);
+	private ServerParametersBuilder agentParametersBuilder = new ServerParametersBuilder().login(SystemMonitorActivity.login).password(SystemMonitorActivity.password).host(SystemMonitorActivity.host);
 	private List<Record> records;
 
 	private TimerTask notify = new TimerTask() {
@@ -36,7 +36,9 @@ public class ServerMonitoringService extends Service {
 			try {
 				downloadDataFromServer();
 			} catch (ResolvingException e) {
-				e.printStackTrace();
+				Log.e("ResolvingException", e.getMessage());
+			} catch (Exception e) {
+				Log.e("Exception", e.getMessage());
 			}
 		}
 	};
