@@ -54,4 +54,10 @@ public class ParametersToPathResolver {
 		}
 	}
 
+	public String resolveAllInformationsAboutAgentPath(
+			ServerParametersBuilder parametersBuilder) {
+		ServerParameters parameters =parametersBuilder.column("all").recordsLimit("12").build();
+		return parameters.getHost() +  resolveCredentials(parameters) + "&do=display_system" + resolveCommonParameters(parameters);
+	}
+
 }
