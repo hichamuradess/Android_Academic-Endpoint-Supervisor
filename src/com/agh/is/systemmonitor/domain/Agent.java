@@ -5,6 +5,11 @@ import com.agh.is.systemmonitor.adapters.Record;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class Agent implements Parcelable, Record{
 	
 	private final int id;

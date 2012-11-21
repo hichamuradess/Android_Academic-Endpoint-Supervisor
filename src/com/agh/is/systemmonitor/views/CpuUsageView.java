@@ -18,6 +18,11 @@ import com.agh.is.systemmonitor.resolvers.network.ShowStatisticsTask;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.screens.SystemMonitorActivity;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class CpuUsageView extends LinearLayout {
 
 	private static final int LAYOUT_ID = R.layout.cpu_usage;
@@ -51,7 +56,7 @@ public class CpuUsageView extends LinearLayout {
 					public void run() {
 						new ShowStatisticsTask(activity, dialogManager, agent, 
 								new ServerParametersBuilder().login(SystemMonitorActivity.login)
-								.password(SystemMonitorActivity.password)
+								.password(SystemMonitorActivity.password).column("cpu_usage")
 								.host(SystemMonitorActivity.host).recordId(String.valueOf(agent.getId()))).execute(new Void[]{});
 					}
 				});

@@ -26,6 +26,11 @@ import com.agh.is.systemmonitor.views.AgentInformationFragment;
 import com.agh.is.systemmonitor.views.AgentsListFragment;
 import com.google.common.annotations.VisibleForTesting;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class MainScreen extends SystemMonitorActivity implements RecordClickListener{
 
 	private ServerMonitoringService serverMonitoringService; 

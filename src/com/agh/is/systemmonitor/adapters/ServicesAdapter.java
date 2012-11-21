@@ -10,6 +10,11 @@ import android.widget.BaseAdapter;
 import com.agh.is.systemmonitor.domain.AgentService;
 import com.agh.is.systemmonitor.views.ServiceRowView;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class ServicesAdapter extends BaseAdapter {
 
 

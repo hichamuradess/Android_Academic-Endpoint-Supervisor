@@ -21,6 +21,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public abstract class AbstractHistChartBuilder implements HistChartBuilder{
 	protected List<AgentInformation> responseList;
 	private String xAxisLabel;

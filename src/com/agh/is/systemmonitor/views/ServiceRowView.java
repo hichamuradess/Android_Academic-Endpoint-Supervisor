@@ -15,7 +15,11 @@ import com.agh.is.systemmonitor.R;
 import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentService;
 
-
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class ServiceRowView extends RelativeLayout{
 
 	private static final int LAYOUT_ID = R.layout.service_row_view;

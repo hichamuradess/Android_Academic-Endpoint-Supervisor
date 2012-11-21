@@ -14,7 +14,11 @@ import com.agh.is.systemmonitor.adapters.Record;
 import com.agh.is.systemmonitor.adapters.RecordClickListener;
 import com.agh.is.systemmonitor.domain.Agent;
 
-
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class RecordRowView extends RelativeLayout{
 
 	private static final int LAYOUT_ID = R.layout.record_row_view;

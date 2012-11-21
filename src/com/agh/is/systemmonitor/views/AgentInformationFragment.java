@@ -20,11 +20,15 @@ import com.agh.is.systemmonitor.domain.AgentInformationDataSet;
 import com.agh.is.systemmonitor.domain.AgentService;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class AgentInformationFragment extends RoboFragment{
 
 	private TabHost tabHost;
 	private TabSpec cpuUsageTab;
-	private TabSpec hdTempTab;
 	private TabSpec discUsageTab;
 	private TabSpec servicesTab;
 	private TextView titleLabel;
@@ -52,14 +56,13 @@ public class AgentInformationFragment extends RoboFragment{
 		tabHost.setup();
 		addTabWithAgentCpuUsage(tabHost);
 		addTabWithAgentHdTemp(tabHost);
-		addTabWithAgentDiskUsage(tabHost);
 		addTabWithServicesInfo(tabHost);
 		setUpTabWidget();
     }
 	
 	private void addTabWithAgentCpuUsage(TabHost tabHost) {
         cpuUsageTab = tabHost.newTabSpec("cpu usage");
-        cpuUsageTab.setIndicator("Zużycie procesora");
+        cpuUsageTab.setIndicator("Procesor");
         cpuUsageTab.setContent(new TabContentFactory() {
 			@Override
 			public View createTabContent(String tag) {
@@ -70,20 +73,8 @@ public class AgentInformationFragment extends RoboFragment{
 	}
  
 	private void addTabWithAgentHdTemp(TabHost tabHost) {
-        hdTempTab = tabHost.newTabSpec("hd temp");
-        hdTempTab.setIndicator("Temperatura dysku");
-        hdTempTab.setContent(new TabContentFactory() {
-			@Override
-			public View createTabContent(String tag) {
-				return new HdTempView(getActivity(), dialogManager, agent, agentInfo);
-			}
-		});
-        tabHost.addTab(hdTempTab);
-	}
-	
-	private void addTabWithAgentDiskUsage(TabHost tabHost) {
-        discUsageTab = tabHost.newTabSpec("disk usage");
-        discUsageTab.setIndicator("Zużycie dysku?");
+        discUsageTab = tabHost.newTabSpec("hd temp");
+        discUsageTab.setIndicator("Dysk");
         discUsageTab.setContent(new TabContentFactory() {
 			@Override
 			public View createTabContent(String tag) {
@@ -111,7 +102,6 @@ public class AgentInformationFragment extends RoboFragment{
         setUpTab(0);
         setUpTab(1);
         setUpTab(2);
-        setUpTab(3);
 	}
 	
 	private void setUpTab(int index) {

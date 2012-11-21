@@ -1,5 +1,10 @@
 package com.agh.is.systemmonitor.services;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class AsyncTaskResult<T> {
 	private T result;
 	private Exception exception;

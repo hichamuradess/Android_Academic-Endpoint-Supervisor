@@ -8,6 +8,11 @@ import android.view.View.OnClickListener;
 import com.agh.is.systemmonitor.views.dialogs.OperationResultDialog;
 import com.agh.is.systemmonitor.views.dialogs.ProgressDialog;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 abstract public class SystemMonitorActivity extends RoboFragmentActivity {
 
 	public static final String DATA_UPDATE = "com.agh.is.systemmonitor.DATA_UPDATE";	

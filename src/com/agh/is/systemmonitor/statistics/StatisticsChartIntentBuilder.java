@@ -39,7 +39,9 @@ import android.graphics.Paint.Align;
 import android.util.Log;
 
 /**
- * Project status demo chart.
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
  */
 public class StatisticsChartIntentBuilder  {
 

@@ -9,6 +9,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class HdUsagePieChartViewBuilder {
 
 	public View createPieChartView(Context context, float f, float g){

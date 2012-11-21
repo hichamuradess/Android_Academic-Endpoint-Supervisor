@@ -14,6 +14,11 @@ import android.widget.ListView;
 
 import com.agh.is.systemmonitor.R;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class AgentsListFragment extends RoboFragment{
 
 	@InjectView(R.id.agents_list_agents_list) private ListView recordsList;

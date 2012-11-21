@@ -16,6 +16,11 @@ import org.apache.http.protocol.HttpContext;
 import com.google.common.io.CharStreams;
 import com.google.common.io.Closeables;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class ServerPathToJSONResolver {
 	
 	public String resolve(String path) throws ResolvingException {

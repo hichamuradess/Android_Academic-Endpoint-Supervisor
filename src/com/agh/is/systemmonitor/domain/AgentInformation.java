@@ -5,6 +5,11 @@ import com.google.common.primitives.Ints;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public class AgentInformation implements Parcelable, Comparable<AgentInformation>{
 
 	private final int id;

@@ -30,6 +30,11 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+/**
+ * Copyright (c) 2012
+ * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
+ * All rights reserved
+ */
 public final class ThermometerView extends View  {
 
 	private Handler handler;
