@@ -65,7 +65,7 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 					if (column.equals("hd_temp")){
 						chartBuilder = new HdTempHistChartBuilder(response, "czas", "temp.[°C ]");
 					}
-					else if (column.equals("cpu_usage")){
+					else if (column.equals("cpu_temp")){
 						chartBuilder = new CpuUsageHistChartBuilder(response, "czas", "%");
 					}
 					else if (column.equals("disk_usage")){
