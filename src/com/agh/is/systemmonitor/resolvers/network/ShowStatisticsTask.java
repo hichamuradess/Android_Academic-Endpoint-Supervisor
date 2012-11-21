@@ -2,6 +2,7 @@ package com.agh.is.systemmonitor.resolvers.network;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
@@ -23,13 +24,13 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 	private DialogWindowsManager dialogsManager;
 	private ServerCommunicationService serverDataDownloader = new ServerCommunicationService();
 	private ServerParametersBuilder paramsBuilder;
-	private Context context;
+	private Activity context;
 
-	public ShowStatisticsTask(Context context, DialogWindowsManager dialogsManager, Agent agent, ServerParametersBuilder paramsBuilder) {
+	public ShowStatisticsTask(Activity activity, DialogWindowsManager dialogsManager, Agent agent, ServerParametersBuilder paramsBuilder) {
 		this.dialogsManager = dialogsManager;
 		this.paramsBuilder = paramsBuilder;
 		this.agent = agent;
-		this.context = context;
+		this.context = activity;
 	}
 
 	@Override
@@ -43,6 +44,7 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 		}
 	}
 
+	@Override
 	protected void onPostExecute(final AsyncTaskResult<List<AgentInformation>> response) {
 		dialogsManager.hideProgressDialog();
 		if (response.getError() != null) {
@@ -57,6 +59,7 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 					String column = params.getColumn();
 					
 					HistChartBuilder chartBuilder = null;
+						chartBuilder = new HdTempHistChartBuilder(response);
 					if (column.equals("hd_temp")){
 						chartBuilder = new HdTempHistChartBuilder(response);
 					}
@@ -66,9 +69,17 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 					else if (column.equals("disk_usage")){
 						chartBuilder = new HdUsageHistChartBuilder(response);
 					}
+					final HistChartBuilder finalBUilder = chartBuilder;
 					if (chartBuilder != null)
 					{ 
-						context.startActivity(chartBuilder.getIntent(context));
+						context.runOnUiThread(new Runnable() {
+							
+							@Override
+							public void run() {
+						context.startActivity(finalBUilder.getIntent(context));
+								
+							}
+						});
 					}
 				 	
 				}

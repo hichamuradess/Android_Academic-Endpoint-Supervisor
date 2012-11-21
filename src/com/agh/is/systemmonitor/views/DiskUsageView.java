@@ -50,7 +50,7 @@ public class DiskUsageView extends LinearLayout {
 				activity.runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
-						new ShowStatisticsTask(activity.getBaseContext(), dialogManager, agent, 
+						new ShowStatisticsTask(activity, dialogManager, agent, 
 								new ServerParametersBuilder().login(SystemMonitorActivity.login)
 								.password(SystemMonitorActivity.password)
 								.host(SystemMonitorActivity.host).recordId(String.valueOf(agent.getId()))).execute(new Void[]{});
