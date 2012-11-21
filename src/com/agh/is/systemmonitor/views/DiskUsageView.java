@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -52,10 +53,10 @@ public class DiskUsageView extends LinearLayout {
 		HdUsagePieChartViewBuilder builder = new HdUsagePieChartViewBuilder();
 		pieChartView = builder.createPieChartView(activity.getBaseContext(), agentInfo.getDiskUsedSpace(), agentInfo.getDiskFreeSpace());
 		String service = Context.LAYOUT_INFLATER_SERVICE;
-		this.addView(pieChartView);
 		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(service);
 		inflater.inflate(LAYOUT_ID, this, true);
-
+		this.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+		this.addView(pieChartView);
 		discUsageDateField = (TextView)findViewById(R.id.agent_information_disc_usage_date);
 		discUsageHistoryField = (TextView)findViewById(R.id.agent_information_disc_usage_history);
 		
