@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">SystemMonitor</string>
-    <string name="title_logo">ACADEMIC ENDPOINT SUPERVISOR</string>
-    <string name="login_view_host_label">HOST</string>
-    <string name="login_view_email_label">LOGIN</string>
-    <string name="login_view_password_label">HASŁO</string>
-    <string name="login_view_login_button">ZALOGUJ</string>
+    <string name="app_name">Mobilny Pomocnik Administrator</string>
+    <string name="title_logo">@string/app_name</string>
+    <string name="login_view_host_label">Host</string>
+    <string name="login_view_email_label">Login</string>
+    <string name="login_view_password_label">Hasło</string>
+    <string name="login_view_login_button">Zaloguj</string>
     <string name="login_view_preogress_dialog_label">Loguję użytkownika</string> 
     <string name="login_view_successful_dialog_label">Zalogowano</string> 
     <string name="login_view_failed_dialog_label">Operacja logowania nie powiodła się</string> 

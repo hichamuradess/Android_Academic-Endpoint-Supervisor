@@ -1,5 +1,7 @@
 package com.agh.is.systemmonitor.views;
 
+import java.util.List;
+
 import roboguice.fragment.RoboFragment;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,21 +16,22 @@ import android.widget.TextView;
 import com.agh.is.systemmonitor.R;
 import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentInformation;
+import com.agh.is.systemmonitor.domain.AgentInformationDataSet;
+import com.agh.is.systemmonitor.domain.AgentService;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 
 public class AgentInformationFragment extends RoboFragment{
 
-	//	@InjectView(R.id.agent_information_temp_view) private TextView tempView;
-	//	@InjectView(R.id.agent_information_cpu_thermometer_view) private ThermometerView cputTempView;
-	private ThermometerView hdTempView;
 	private TabHost tabHost;
 	private TabSpec cpuUsageTab;
 	private TabSpec hdTempTab;
 	private TabSpec discUsageTab;
+	private TabSpec servicesTab;
 	private TextView titleLabel;
 	private DialogWindowsManager dialogManager;
 	private Agent agent;
 	private AgentInformation agentInfo;
+	private List<AgentService> services;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,15 +43,17 @@ public class AgentInformationFragment extends RoboFragment{
 		return layout;
 	}
 
-	public void setAgentData(Agent agent, AgentInformation agentInfo, DialogWindowsManager dialogManager) {
+	public void setAgentData(Agent agent, AgentInformationDataSet agentInfoData, DialogWindowsManager dialogManager) {
 		this.agent = agent;
-		this.agentInfo = agentInfo;
+		this.agentInfo = agentInfoData.getAgentInfo();
 		this.dialogManager= dialogManager;
+		this.services = agentInfoData.getAgentServices();
 		titleLabel.setText(agent.getName());
 		tabHost.setup();
 		addTabWithAgentCpuUsage(tabHost);
 		addTabWithAgentHdTemp(tabHost);
 		addTabWithAgentDiskUsage(tabHost);
+		addTabWithServicesInfo(tabHost);
 		setUpTabWidget();
     }
 	
@@ -88,11 +93,25 @@ public class AgentInformationFragment extends RoboFragment{
         tabHost.addTab(discUsageTab);
 	}
 	
+	private void addTabWithServicesInfo(TabHost tabHost) {
+        servicesTab = tabHost.newTabSpec("services");
+        servicesTab.setIndicator("Usługi");
+        servicesTab.setContent(new TabContentFactory() {
+			@Override
+			public View createTabContent(String tag) {
+				return new AgentServicesTab(getActivity().getBaseContext(), services);
+			}
+		});
+        tabHost.addTab(servicesTab);
+	}
+	
+
+	
 	private void setUpTabWidget() {
-        tabHost.getTabWidget().setCurrentTab(1);
         setUpTab(0);
         setUpTab(1);
         setUpTab(2);
+        setUpTab(3);
 	}
 	
 	private void setUpTab(int index) {

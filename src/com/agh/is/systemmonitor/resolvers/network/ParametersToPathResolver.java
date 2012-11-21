@@ -26,6 +26,11 @@ public class ParametersToPathResolver {
 		return parameters.getHost() +  resolveCredentials(parameters) + "&do=display_system" + resolveCommonParameters(parameters);
 	}
 
+	public String resolveAgentsServicesInformationDownloadPath(ServerParametersBuilder paramsBuilder) {
+		ServerParameters parameters = paramsBuilder.build();
+		return parameters.getHost() +  resolveCredentials(parameters) + "&do=display_current_ping" + resolveCommonParameters(parameters);
+	}
+	
 	private String resolveCredentials(ServerParameters parameters) {
 		return "?login="+parameters.getLogin()+ "&pass="+parameters.getPassword();
 	}

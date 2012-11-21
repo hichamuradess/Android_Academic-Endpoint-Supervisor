@@ -5,6 +5,7 @@ import java.util.List;
 import com.agh.is.systemmonitor.adapters.Record;
 import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentInformation;
+import com.agh.is.systemmonitor.domain.AgentService;
 import com.agh.is.systemmonitor.domain.GroupOfAgents;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.google.common.collect.Lists;
@@ -64,5 +65,11 @@ public class ServerCommunicationService {
 		String downloadPath = paramsPathResolver.resolveAgentsInformationDownloadPath(parametersBuilder);
 		String downloadedJson = jsonResolver.resolve(downloadPath);
 		return agentDataResolver.resolveAgentInformation(downloadedJson);
+	}
+	
+	public List<AgentService> downloadAgentInformationDataSet(ServerParametersBuilder parametersBuilder) throws ResolvingException {
+		String downloadPath = paramsPathResolver.resolveAgentsServicesInformationDownloadPath(parametersBuilder);
+		String downloadedJson = jsonResolver.resolve(downloadPath);
+		return agentDataResolver.resolveAgentServicesInformation(downloadedJson);
 	}
 }

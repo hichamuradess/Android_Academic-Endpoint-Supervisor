@@ -32,8 +32,13 @@ public class OperationResultDialog extends Dialog {
 
 	}
 	
+	public void showInformationalMessage(String message, final android.view.View.OnClickListener okButtonListener) {
+		resultImage.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.operation_result_dialog_info));
+		showMessage(message, okButtonListener);
+	}
+	
 	public void showFailureMessage(String message, final android.view.View.OnClickListener okButtonListener) {
-		resultImage.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.operation_result_dialog_error_icon));
+		resultImage.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.operation_result_dialog_error));
 		showMessage(message, okButtonListener);
 	}
 	
@@ -41,7 +46,7 @@ public class OperationResultDialog extends Dialog {
 		dialogLabel.setText(message);
 		setUpOkButtonListener(listener);
 	}
-		
+	
 	private void setUpOkButtonListener(final android.view.View.OnClickListener listener) {
 		okButton.setOnClickListener(new View.OnClickListener() {
 			@Override
