@@ -11,10 +11,10 @@ import android.view.View;
 
 public class HdUsagePieChartViewBuilder {
 
-	public View createPieChartView(Context context, int a, int b){
+	public View createPieChartView(Context context, float f, float g){
 		CategorySeries series = new CategorySeries("Zużycie dysku");
-		series.add("Zajęte", a);
-		series.add("Wolne", b);
+		series.add("Zajęte", f);
+		series.add("Wolne", g);
 		
 		int[] colors = new int[] { Color.RED, Color.GREEN};
 

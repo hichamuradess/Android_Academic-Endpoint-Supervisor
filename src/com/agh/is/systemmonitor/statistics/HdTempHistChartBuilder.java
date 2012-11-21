@@ -13,13 +13,13 @@ import com.agh.is.systemmonitor.services.AsyncTaskResult;
 public class HdTempHistChartBuilder extends AbstractHistChartBuilder {
 
 	public HdTempHistChartBuilder(
-			AsyncTaskResult<List<AgentInformation>> response) {
-		super(response);
+			AsyncTaskResult<List<AgentInformation>> response, String xAxisLabel, String yAxisLabel) {
+		super(response, xAxisLabel, yAxisLabel);
 	}
 
 	@Override
 	protected TimeSeries createSeries() {
-		TimeSeries series = new TimeSeries("Temperatura CPU");
+		TimeSeries series = new TimeSeries("Temperatura dysku");
 		for (AgentInformation agentInformation : responseList){
 			series.add(agentInformation.getInsertTime(), agentInformation.getHdTemp());
 		}

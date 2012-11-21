@@ -59,15 +59,14 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 					String column = params.getColumn();
 					
 					HistChartBuilder chartBuilder = null;
-						chartBuilder = new HdTempHistChartBuilder(response);
 					if (column.equals("hd_temp")){
-						chartBuilder = new HdTempHistChartBuilder(response);
+						chartBuilder = new HdTempHistChartBuilder(response, "czas [min.]", "temp.[°C ]");
 					}
 					else if (column.equals("cpu_usage")){
-						chartBuilder = new CpuUsageHistChartBuilder(response);
+						chartBuilder = new CpuUsageHistChartBuilder(response, "czas [min.]", "%");
 					}
 					else if (column.equals("disk_usage")){
-						chartBuilder = new HdUsageHistChartBuilder(response);
+						chartBuilder = new HdUsageHistChartBuilder(response, "czas [min.]", "%");
 					}
 					final HistChartBuilder finalBUilder = chartBuilder;
 					if (chartBuilder != null)

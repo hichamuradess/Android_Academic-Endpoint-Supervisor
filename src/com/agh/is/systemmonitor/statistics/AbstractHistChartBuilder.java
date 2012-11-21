@@ -1,5 +1,6 @@
 package com.agh.is.systemmonitor.statistics;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -22,6 +23,8 @@ import android.location.Address;
 
 public abstract class AbstractHistChartBuilder implements HistChartBuilder{
 	protected List<AgentInformation> responseList;
+	private String xAxisLabel;
+	private String yAxisLabel;
 	
 	@Override
 	public Intent getIntent(Context context) {
@@ -43,14 +46,26 @@ public abstract class AbstractHistChartBuilder implements HistChartBuilder{
 		renderer.setFillPoints(true);
 		XYMultipleSeriesRenderer multipleSeriesRenderer = new XYMultipleSeriesRenderer();
 		multipleSeriesRenderer.addSeriesRenderer(renderer);
+		multipleSeriesRenderer.setYAxisMax(100);
+		multipleSeriesRenderer.setYAxisMin(0);
+		multipleSeriesRenderer.setXTitle(xAxisLabel);
+		multipleSeriesRenderer.setYTitle(yAxisLabel);
+		multipleSeriesRenderer.setZoomEnabled(true);
 		return multipleSeriesRenderer;
 	}
 	
-	public AbstractHistChartBuilder(AsyncTaskResult<List<AgentInformation>> response)
+	public AbstractHistChartBuilder(AsyncTaskResult<List<AgentInformation>> response, String xAxisLabel, String yAxisLabel)
 	{
 		List<AgentInformation> list = Lists.newArrayList(response.getResult());
 		Collections.sort(list);
 		this.responseList = list;
+		this.xAxisLabel = xAxisLabel;
+		this.yAxisLabel = yAxisLabel;
+	}
+	
+	protected Date parseTimestamp(long timeStamp){
+		Date time=new Date(timeStamp*1000);
+		return time;
 	}
 	
 	protected abstract TimeSeries createSeries();

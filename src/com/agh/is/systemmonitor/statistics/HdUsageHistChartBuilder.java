@@ -15,8 +15,8 @@ import android.content.Intent;
 public class HdUsageHistChartBuilder extends AbstractHistChartBuilder{
 
 	public HdUsageHistChartBuilder(
-			AsyncTaskResult<List<AgentInformation>> response) {
-		super(response);
+			AsyncTaskResult<List<AgentInformation>> response, String xAxisLabel, String yAxisLabel) {
+		super(response, xAxisLabel, yAxisLabel);
 	}
 
 	@Override

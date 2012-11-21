@@ -2,6 +2,9 @@ package com.agh.is.systemmonitor.views;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.zip.Inflater;
+
+import org.achartengine.chart.PieChart;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,6 +21,7 @@ import com.agh.is.systemmonitor.resolvers.network.ShowStatisticsTask;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.screens.SystemMonitorActivity;
+import com.agh.is.systemmonitor.statistics.HdUsagePieChartViewBuilder;
 
 public class DiskUsageView extends LinearLayout {
 
@@ -25,6 +29,7 @@ public class DiskUsageView extends LinearLayout {
 
 	private TextView discUsageDateField;
 	private TextView discUsageHistoryField;
+	private View pieChartView;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	private Activity activity;
 
@@ -35,8 +40,10 @@ public class DiskUsageView extends LinearLayout {
 	}
 
 	private void initialize(AgentInformation agentInfo, final DialogWindowsManager dialogManager, final Agent agent) {
+		HdUsagePieChartViewBuilder builder = new HdUsagePieChartViewBuilder();
+		pieChartView = builder.createPieChartView(activity.getBaseContext(), agentInfo.getDiskUsedSpace(), agentInfo.getDiskFreeSpace());
 		String service = Context.LAYOUT_INFLATER_SERVICE;
-		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(service);	
+		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(service);
 		inflater.inflate(LAYOUT_ID, this, true);
 
 		discUsageDateField = (TextView)findViewById(R.id.agent_information_disc_usage_date);
