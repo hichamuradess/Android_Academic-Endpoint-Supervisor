@@ -22,10 +22,10 @@ public class ParametersToPathResolver {
 	}
 
 	public String resolveAgentsGroupsDownloadPath(ServerParametersBuilder parametersBuilder) {
+		
 		ServerParameters parameters =parametersBuilder.build();
 		return parameters.getHost() + resolveCredentials(parameters)+ "&do=display_groups" + resolveCommonParameters(parameters) 
 				+ parseToGETRequestParameters("parent_id", parameters.getGroup());
-				
 	}
 	
 	public String resolveAgentInformationForStatisticsDownloadPath(ServerParametersBuilder parametersBuilder) {
@@ -53,6 +53,7 @@ public class ParametersToPathResolver {
 				parseToGETRequestParameters("column", parameters.getColumn()) +
 				parseToGETRequestParameters("order", parameters.getSortOrder()) +
 				parseToGETRequestParameters("limit", parameters.getRecordsLimit()) +
+//				parseToGETRequestParameters("parent_id", parameters.getParentID()) +
 				parseToGETRequestParameters("offset", parameters.getSortOffset());
 	}
 
