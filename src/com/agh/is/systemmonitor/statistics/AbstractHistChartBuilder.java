@@ -56,6 +56,7 @@ public abstract class AbstractHistChartBuilder implements HistChartBuilder{
 		multipleSeriesRenderer.setXTitle(xAxisLabel);
 		multipleSeriesRenderer.setYTitle(yAxisLabel);
 		multipleSeriesRenderer.setZoomEnabled(true);
+		multipleSeriesRenderer.setZoomButtonsVisible(true);
 		return multipleSeriesRenderer;
 	}
 	
