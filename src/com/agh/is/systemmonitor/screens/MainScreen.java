@@ -113,7 +113,7 @@ public class MainScreen extends SystemMonitorActivity implements RecordClickList
 		dialogsManager = new DialogWindowsManager(this);
 		String parentID = getIntent().getStringExtra("parentID");
 		listView = (AgentsListFragment)getSupportFragmentManager().findFragmentById(R.id.main_screen_list);
-		new ShowRecordsFromServerTask(this, dialogsManager, paramsBuilder.host(host).login(login).password(password).parentId(parentID)).execute(new Void[]{});
+		new ShowRecordsFromServerTask(this, dialogsManager, paramsBuilder.host(host).login(login).password(password).parent_id(parentID)).execute(new Void[]{});
 	}
 
 	private void registerReceiver() {

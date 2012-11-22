@@ -17,12 +17,13 @@ public class ParametersToPathResolver {
 	
 	public String resolveAgentsDownloadPath(ServerParametersBuilder parametersBuilder) {
 		ServerParameters parameters =parametersBuilder.build();
-		return parameters.getHost() + resolveCredentials(parameters) + "&do=display_servers" + resolveCommonParameters(parameters);
+		return parameters.getHost() + resolveCredentials(parameters) + "&do=display_servers" + "&group="+parameters.getParentID()+ resolveCommonParameters(parameters);
 	}
 
 	public String resolveAgentsGroupsDownloadPath(ServerParametersBuilder parametersBuilder) {
+		
 		ServerParameters parameters =parametersBuilder.build();
-		return parameters.getHost() + resolveCredentials(parameters)+ "&do=display_groups" + resolveCommonParameters(parameters);
+		return parameters.getHost() + resolveCredentials(parameters)+ "&do=display_groups" +"&parent_id="+parameters.getParentID() + resolveCommonParameters(parameters);
 	}
 	
 	public String resolveAgentInformationForStatisticsDownloadPath(ServerParametersBuilder parametersBuilder) {
@@ -50,7 +51,7 @@ public class ParametersToPathResolver {
 				parseToGETRequestParameters("column", parameters.getColumn()) +
 				parseToGETRequestParameters("order", parameters.getSortOrder()) +
 				parseToGETRequestParameters("limit", parameters.getRecordsLimit()) +
-				parseToGETRequestParameters("group", parameters.getParentID()) +
+//				parseToGETRequestParameters("parent_id", parameters.getParentID()) +
 				parseToGETRequestParameters("offset", parameters.getSortOffset());
 	}
 

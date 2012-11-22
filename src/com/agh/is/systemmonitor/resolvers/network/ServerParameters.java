@@ -57,9 +57,9 @@ public class ServerParameters{
 			return this;
 		}
 
-		public ServerParametersBuilder parentId(String parentID) {
-			Preconditions.checkNotNull(parentID);
-			this.parent_id = parentID;
+		public ServerParametersBuilder parent_id(String parent_id) {
+			Preconditions.checkNotNull(parent_id);
+			this.parent_id = parent_id;
 			return this;
 		}
 
@@ -98,14 +98,14 @@ public class ServerParameters{
 		}
 	}
 
-	private ServerParameters(String login, String password, String parentID, String host, String sortColumn, String sortOrder,
+	private ServerParameters(String login, String password, String parent_id, String host, String sortColumn, String sortOrder,
 			String recordsLimit, String sortOffset, String recordId, String column) {
 		super();
 
 		this.column = column;
 		this.login = login;
 		this.password = password;
-		this.parent_id =parentID;
+		this.parent_id =parent_id;
 		this.host = host;
 		this.sortColumn = sortColumn;
 		this.sortOrder = sortOrder;
