@@ -26,7 +26,7 @@ public class ParametersToPathResolver {
 	}
 	
 	public String resolveAgentInformationForStatisticsDownloadPath(ServerParametersBuilder parametersBuilder) {
-		ServerParameters parameters =parametersBuilder.recordsLimit("1").build();
+		ServerParameters parameters =parametersBuilder.build();
 		return parameters.getHost() +  resolveCredentials(parameters) + "&do=display_system" + resolveCommonParameters(parameters);
 	}
 
