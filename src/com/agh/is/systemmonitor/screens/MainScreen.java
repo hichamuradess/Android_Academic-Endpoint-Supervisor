@@ -47,6 +47,8 @@ public class MainScreen extends SystemMonitorActivity implements RecordClickList
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			LocalBinder binder = (LocalBinder) service;
 			serverMonitoringService = binder.getService();
+			serverMonitoringService.setParametersBuilder(paramsBuilder);
+			serverMonitoringService.startDataPulling();
 			serverMonitoringServiceIsBound = true;
 		}
 
@@ -63,11 +65,16 @@ public class MainScreen extends SystemMonitorActivity implements RecordClickList
 		initialize();
 	}
 
+	@Override
 	public void onStart() {
 		super.onStart();
 		registerReceiver();
+		if (!serverMonitoringServiceIsBound) {
+			Intent intent = new Intent(this, ServerMonitoringService.class);
+			bindService(intent);
+		}
 	};
-
+	
 	@Override
 	public Dialog onCreateDialog(int id) {
 		Dialog dialog = dialogsManager.createDialog(this, id);
@@ -111,14 +118,14 @@ public class MainScreen extends SystemMonitorActivity implements RecordClickList
 	@VisibleForTesting
 	void initialize() {
 		dialogsManager = new DialogWindowsManager(this);
-		String parentID = getIntent().getStringExtra("parentID");
+		String group = getIntent().getStringExtra("parentID");
 		listView = (AgentsListFragment)getSupportFragmentManager().findFragmentById(R.id.main_screen_list);
-		new ShowRecordsFromServerTask(this, dialogsManager, paramsBuilder.host(host).login(login).password(password).parentId(parentID)).execute(new Void[]{});
+		new ShowRecordsFromServerTask(this, dialogsManager, paramsBuilder.host(host).login(login).password(password).group(group)).execute(new Void[]{});
 	}
 
 	private void registerReceiver() {
 		updatedDataReceiver = new UpdatedDataReceiver();
-		IntentFilter filter = new IntentFilter(SystemMonitorActivity.DATA_UPDATE)	;
+		IntentFilter filter = new IntentFilter("GROUP : " + paramsBuilder.build().getGroup())	;
 		registerReceiver(updatedDataReceiver, filter);
 	}
 
@@ -139,8 +146,9 @@ public class MainScreen extends SystemMonitorActivity implements RecordClickList
 
 		@Override
 		public void handleReceive(Context context, Intent intent) {
-			String json = intent.getStringExtra(SystemMonitorActivity.DATA_UPDATE);
-			if (listAdapter != null) {
+			String message = intent.getStringExtra(SystemMonitorActivity.DATA_UPDATE);
+			if (message.equals("updated") && listAdapter != null) {
+				listAdapter.setRecords(serverMonitoringService.getDownloadedRecords());
 				listAdapter.notifyDataSetChanged();
 			}
 		}

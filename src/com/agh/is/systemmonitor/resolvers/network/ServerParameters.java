@@ -14,7 +14,7 @@ public class ServerParameters{
 	private final String recordsLimit;
 	private final String sortOffset;
 	private final String recordId;
-	private final String parent_id;
+	private final String group;
 	private final String host;
 	private final String login;
 	private final String password;
@@ -28,7 +28,7 @@ public class ServerParameters{
 		private String sortOffset;
 		private String recordId;
 		private String host;
-		private String parent_id = "0";
+		private String group = "0";
 		private String login;
 		private String password;
 		private String column;
@@ -57,9 +57,9 @@ public class ServerParameters{
 			return this;
 		}
 
-		public ServerParametersBuilder parentId(String parentID) {
-			Preconditions.checkNotNull(parentID);
-			this.parent_id = parentID;
+		public ServerParametersBuilder group(String group) {
+			Preconditions.checkNotNull(group);
+			this.group = group;
 			return this;
 		}
 
@@ -94,18 +94,18 @@ public class ServerParameters{
 		}
 
 		public ServerParameters build() {
-			return new ServerParameters(login, password, parent_id, host, sortColumn, sortOrder, recordsLimit, sortOffset, recordId, column);
+			return new ServerParameters(login, password, group, host, sortColumn, sortOrder, recordsLimit, sortOffset, recordId, column);
 		}
 	}
 
-	private ServerParameters(String login, String password, String parentID, String host, String sortColumn, String sortOrder,
+	private ServerParameters(String login, String password, String group, String host, String sortColumn, String sortOrder,
 			String recordsLimit, String sortOffset, String recordId, String column) {
 		super();
 
 		this.column = column;
 		this.login = login;
 		this.password = password;
-		this.parent_id =parentID;
+		this.group =group;
 		this.host = host;
 		this.sortColumn = sortColumn;
 		this.sortOrder = sortOrder;
@@ -138,8 +138,8 @@ public class ServerParameters{
 		return recordId;
 	}
 
-	public String getParentID() {
-		return parent_id;
+	public String getGroup() {
+		return group;
 	}
 
 	public String getLogin() {

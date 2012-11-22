@@ -15,6 +15,7 @@ import com.agh.is.systemmonitor.resolvers.network.ResolvingException;
 import com.agh.is.systemmonitor.resolvers.network.ServerCommunicationService;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.SystemMonitorActivity;
+import com.google.common.collect.Lists;
 
 /**
  * Copyright (c) 2012
@@ -24,32 +25,22 @@ import com.agh.is.systemmonitor.screens.SystemMonitorActivity;
 public class ServerMonitoringService extends Service {
 
 	private final IBinder binder = new LocalBinder();
-	private Timer updatingTimer;
+	private Timer dataPullerTimer;
 	private ServerCommunicationService serverDataDownloader;
 	private ServerParametersBuilder agentParametersBuilder = new ServerParametersBuilder().login(SystemMonitorActivity.login).password(SystemMonitorActivity.password).host(SystemMonitorActivity.host);
 	private List<Record> records;
-
-	private TimerTask notify = new TimerTask() {
-
-		@Override
-		public void run() {
-			try {
-				downloadDataFromServer();
-			} catch (ResolvingException e) {
-				Log.e("ResolvingException", e.getMessage());
-			} catch (Exception e) {
-				Log.e("Exception", e.getMessage());
-			}
-		}
-	};
-
+	private TimerTask dataPuller;
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		serverDataDownloader = new ServerCommunicationService();
-		updatingTimer = new Timer();
-		updatingTimer.schedule(notify, 0, 10000);
+	}
+
+	public void startDataPulling() {
+		dataPuller = new DataPullingTask();
+		dataPullerTimer = new Timer();
+		dataPullerTimer.schedule(dataPuller, 0, 10000);
 	}
 
 	@Override
@@ -58,10 +49,35 @@ public class ServerMonitoringService extends Service {
 	}
 
 	@Override
+	public boolean onUnbind(Intent intent) {
+		dataPullerTimer.cancel();
+		return super.onUnbind(intent);
+	}
+
+	@Override
 	public void onDestroy() {
-		updatingTimer.cancel();
+		dataPullerTimer.cancel();
 		super.onDestroy();
 	}
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		return binder;
+	}
+
+	public void setParametersBuilder(ServerParametersBuilder paramsBuilder) {
+		agentParametersBuilder = paramsBuilder; 
+	}
+
+	public synchronized List<Record> getDownloadedRecords() {
+		return records;
+	}
+
+	private void sendNotification() {
+		Intent intent = new Intent(SystemMonitorActivity.DATA_UPDATE);
+		intent.putExtra(SystemMonitorActivity.DATA_UPDATE, "GROUP : " + agentParametersBuilder.build().getGroup());
+		sendBroadcast(intent);
+	}	
 
 	public class LocalBinder extends Binder {
 
@@ -71,33 +87,27 @@ public class ServerMonitoringService extends Service {
 
 	}
 
-	@Override
-	public IBinder onBind(Intent arg0) {
-		return binder;
-	}
-	
-	public void setHost(String host) {
-		synchronized(this) {
-			agentParametersBuilder = new ServerParametersBuilder().host(host);
+	private class DataPullingTask extends TimerTask {
+
+		@Override
+		public void run() {
+			try {
+				Log.i("ServerMonitorinrService", "Downloading from " + agentParametersBuilder.build().toString());
+				List<Record> records = serverDataDownloader.downloadRecords(agentParametersBuilder);
+				Log.i("ServerMonitorinrService", "Records downloaded " + records.toString());
+				
+				synchronized(ServerMonitoringService.this) {
+					ServerMonitoringService.this.records = Lists.newLinkedList(records);
+				}
+				
+				sendNotification();
+			} catch (ResolvingException e) {
+				Log.e("ResolvingException", e.getMessage());
+			} catch (Exception e) {
+				Log.e("Exception", e.getMessage());
+			}
 		}
-	}
-	
-	public synchronized List<Record> getDownloadedRecords() {
-		return records;
-	}
 
-	private void downloadDataFromServer() throws ResolvingException {
-		synchronized (this) {
-			records = serverDataDownloader.downloadRecords(agentParametersBuilder);
-		}
-		sendNotification();
 	}
-
-
-	private void sendNotification() {
-		Intent intent = new Intent(SystemMonitorActivity.DATA_UPDATE);
-		intent.putExtra(SystemMonitorActivity.DATA_UPDATE, "updated");
-		sendBroadcast(intent);
-	}	
 
 }

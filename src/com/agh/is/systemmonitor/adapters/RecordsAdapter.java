@@ -3,6 +3,7 @@ package com.agh.is.systemmonitor.adapters;
 import java.util.List;
 
 import com.agh.is.systemmonitor.views.RecordRowView;
+import com.google.common.collect.Lists;
 
 import android.content.Context;
 import android.view.View;
@@ -30,6 +31,10 @@ public class RecordsAdapter extends BaseAdapter {
 		return records.size();
 	}
 
+	public void setRecords(List<Record> records) {
+		this.records = Lists.newLinkedList(records);
+	}
+	
 	@Override
 	public Object getItem(int position) {
 		return records.get(position);

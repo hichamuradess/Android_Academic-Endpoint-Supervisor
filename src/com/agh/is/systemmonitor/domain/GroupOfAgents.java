@@ -32,4 +32,10 @@ public class GroupOfAgents implements Record{
 		return name;
 	}
 
+	@Override
+	public String toString() {
+		return "GroupOfAgents [id=" + id + ", parent_id=" + parent_id
+				+ ", name=" + name + "]";
+	}
+
 }

@@ -63,6 +63,7 @@ public class ShowRecordsFromServerTask extends AsyncTask<Void, Void, AsyncTaskRe
 			}
 			else {
 				Intent intent = new Intent(mainScrnActivity, ServerMonitoringService.class);
+				intent.putExtra("group", paramsBuilder.build().getGroup());
 				mainScrnActivity.setListAdapter(new RecordsAdapter(mainScrnActivity, response.getResult(), mainScrnActivity));
 				mainScrnActivity.bindService(intent);
 			}
