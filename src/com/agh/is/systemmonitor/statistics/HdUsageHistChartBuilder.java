@@ -30,7 +30,7 @@ public class HdUsageHistChartBuilder extends AbstractHistChartBuilder{
 	protected TimeSeries createSeries() {
 		TimeSeries series = new TimeSeries("Zużycie dysku");
 		for (AgentInformation agentInformation : responseList){
-			series.add(new Date(agentInformation.getInsertTime()), agentInformation.getDiskUsedSpace());
+			series.add(new Date(agentInformation.getInsertTime()), (agentInformation.getDiskUsedSpace())/(1024*1024));
 		}
 		return series;
 	}
