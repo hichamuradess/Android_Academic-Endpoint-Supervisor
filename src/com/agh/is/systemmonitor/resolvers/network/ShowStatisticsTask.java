@@ -12,14 +12,14 @@ import com.agh.is.systemmonitor.domain.Agent;
 import com.agh.is.systemmonitor.domain.AgentInformation;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
-import com.agh.is.systemmonitor.services.AsyncTaskResult;
+import com.agh.is.systemmonitor.services.AsynsTaskResponse;
 import com.agh.is.systemmonitor.statistics.CpuUsageHistChartBuilder;
 import com.agh.is.systemmonitor.statistics.HdTempHistChartBuilder;
 import com.agh.is.systemmonitor.statistics.HdUsageHistChartBuilder;
 import com.agh.is.systemmonitor.statistics.HistChartBuilder;
 
 
-public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<List<AgentInformation>>> {
+public class ShowStatisticsTask extends AsyncTask<Void, Void, AsynsTaskResponse<List<AgentInformation>>> {
 
 	private Agent agent; 
 	private DialogWindowsManager dialogsManager;
@@ -35,20 +35,20 @@ public class ShowStatisticsTask extends AsyncTask<Void, Void, AsyncTaskResult<Li
 	}
 
 	@Override
-	protected AsyncTaskResult<List<AgentInformation>> doInBackground(Void... params) {
+	protected AsynsTaskResponse<List<AgentInformation>> doInBackground(Void... params) {
 		try {
 			dialogsManager.showProgressDialog("Pobieram historię dla agenta : " + agent.getName());
 			List<AgentInformation> info = serverDataDownloader.downloadStatisticsInformations(paramsBuilder);
-			return new AsyncTaskResult<List<AgentInformation>>(info);
+			return new AsynsTaskResponse<List<AgentInformation>>(info);
 		} catch (ResolvingException e) {
-			return new AsyncTaskResult<List<AgentInformation>>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
+			return new AsynsTaskResponse<List<AgentInformation>>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
 		} catch (Exception e) {
-			return new AsyncTaskResult<List<AgentInformation>>(e, "Operacja nie powiodła się");
+			return new AsynsTaskResponse<List<AgentInformation>>(e, "Operacja nie powiodła się");
 		}
 	}
 
 	@Override
-	protected void onPostExecute(final AsyncTaskResult<List<AgentInformation>> response) {
+	protected void onPostExecute(final AsynsTaskResponse<List<AgentInformation>> response) {
 		dialogsManager.hideProgressDialog();
 		if (response.getError() != null) {
 			dialogsManager.showFailureMessage("Operacja nie powiodła się");

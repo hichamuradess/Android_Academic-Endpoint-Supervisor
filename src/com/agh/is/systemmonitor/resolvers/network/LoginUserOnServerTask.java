@@ -11,7 +11,7 @@ import com.agh.is.systemmonitor.domain.AgentInformation;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.screens.MainScreen;
-import com.agh.is.systemmonitor.services.AsyncTaskResult;
+import com.agh.is.systemmonitor.services.AsynsTaskResponse;
 import com.google.gson.Gson;
 
 /**
@@ -19,7 +19,7 @@ import com.google.gson.Gson;
  * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
  * All rights reserved
  */
-public class LoginUserOnServerTask extends AsyncTask<Void, Void, AsyncTaskResult<String>> {
+public class LoginUserOnServerTask extends AsyncTask<Void, Void, AsynsTaskResponse<String>> {
 
 
 	private DialogWindowsManager dialogWindowManager;
@@ -34,26 +34,26 @@ public class LoginUserOnServerTask extends AsyncTask<Void, Void, AsyncTaskResult
 	}
 
 	@Override
-	protected AsyncTaskResult<String> doInBackground(Void... params) {
+	protected AsynsTaskResponse<String> doInBackground(Void... params) {
 		try {
 			dialogWindowManager.showProgressDialog("Loguję użytkownika");
 			String response = serverDataService.loginUserOnServer(paramsBuilder);
-			return new AsyncTaskResult<String>(response);
+			return new AsynsTaskResponse<String>(response);
 		} catch (ResolvingException e) {
-			return new AsyncTaskResult<String>(e, "Logowanie nie powiodło się (problem z połączeniem)");
+			return new AsynsTaskResponse<String>(e, "Logowanie nie powiodło się (problem z połączeniem)");
 		} catch (Exception e) {
-			return new AsyncTaskResult<String>(e, "Operacja nie powiodła się");
+			return new AsynsTaskResponse<String>(e, "Operacja nie powiodła się");
 		}
 	}
 
 	@Override
-	protected void onPostExecute(AsyncTaskResult<String> result) {
+	protected void onPostExecute(AsynsTaskResponse<String> result) {
 		dialogWindowManager.hideProgressDialog();
 		handleServerResponse(result);
 		super.onPostExecute(result);
 	}
 
-	private void handleServerResponse(AsyncTaskResult<String> result) {
+	private void handleServerResponse(AsynsTaskResponse<String> result) {
 		if (result.getError() != null) {
 			dialogWindowManager.showFailureMessage(result.errorMessage());
 
@@ -68,7 +68,7 @@ public class LoginUserOnServerTask extends AsyncTask<Void, Void, AsyncTaskResult
 
 	}
 
-	private void handleLoginFailure(AsyncTaskResult<String> result) {
+	private void handleLoginFailure(AsynsTaskResponse<String> result) {
 		String response = result.getResult();
 		Gson gson = new Gson();
 		ServerError err = (ServerError)gson.fromJson(response, ServerError.class);

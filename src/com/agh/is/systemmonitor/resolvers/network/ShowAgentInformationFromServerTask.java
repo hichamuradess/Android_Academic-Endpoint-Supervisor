@@ -13,7 +13,7 @@ import com.agh.is.systemmonitor.domain.AgentService;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.AgentInformationScreen;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
-import com.agh.is.systemmonitor.services.AsyncTaskResult;
+import com.agh.is.systemmonitor.services.AsynsTaskResponse;
 import com.agh.is.systemmonitor.views.AgentInformationFragment;
 
 /**
@@ -21,7 +21,7 @@ import com.agh.is.systemmonitor.views.AgentInformationFragment;
  * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
  * All rights reserved
  */
-public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, AsyncTaskResult<AgentInformationDataSet>> {
+public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, AsynsTaskResponse<AgentInformationDataSet>> {
 
 	private Agent agent; 
 	private DialogWindowsManager dialogsManager;
@@ -39,20 +39,20 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 	}
 
 	@Override
-	protected AsyncTaskResult<AgentInformationDataSet> doInBackground(Agent... params) {
+	protected AsynsTaskResponse<AgentInformationDataSet> doInBackground(Agent... params) {
 		try {
 			dialogsManager.showProgressDialog("Pobieram informacje o agencie : " + agent.getName());
 			AgentInformation info = serverDataDownloader.downloadAgentInformation(paramsBuilder);
 			List<AgentService> services = serverDataDownloader.downloadAgentInformationDataSet(paramsBuilder);
-			return new AsyncTaskResult<AgentInformationDataSet>(new AgentInformationDataSet(info, services));
+			return new AsynsTaskResponse<AgentInformationDataSet>(new AgentInformationDataSet(info, services));
 		} catch (ResolvingException e) {
-			return new AsyncTaskResult<AgentInformationDataSet>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
+			return new AsynsTaskResponse<AgentInformationDataSet>(e, "Operacja nie powiodła się (problem z nawiązaniem połączenia)");
 		} catch (Exception e) {
-			return new AsyncTaskResult<AgentInformationDataSet>(e, "Operacja nie powiodła się");
+			return new AsynsTaskResponse<AgentInformationDataSet>(e, "Operacja nie powiodła się");
 		}
 	}
 
-	protected void onPostExecute(AsyncTaskResult<AgentInformationDataSet> response) {
+	protected void onPostExecute(AsynsTaskResponse<AgentInformationDataSet> response) {
 		dialogsManager.hideProgressDialog();
 		if (response.getError() != null) {
 			dialogsManager.showFailureMessage("Operacja nie powiodła się");
@@ -66,7 +66,7 @@ public class ShowAgentInformationFromServerTask extends AsyncTask<Agent, Void, A
 		}
 	};
 
-	private void showAgentInformationDataSet(AsyncTaskResult<AgentInformationDataSet> response) {
+	private void showAgentInformationDataSet(AsynsTaskResponse<AgentInformationDataSet> response) {
 		if (infoFragment != null && infoFragment.isInLayout()) {
 			infoFragment.initializeAgentData(agent, response.getResult(), dialogsManager);
 		} else {

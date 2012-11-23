@@ -1,5 +1,6 @@
 package com.agh.is.systemmonitor.domain;
 
+import com.google.common.base.Preconditions;
 import com.google.common.primitives.Ints;
 
 import android.os.Parcel;
@@ -28,6 +29,14 @@ public class AgentInformation implements Parcelable, Comparable<AgentInformation
 	
 	public AgentInformation(int id, int serverID, long insertTime, float cpuTemp,
 			float hdTemp, float diskFreeSpace, float diskUsedSpace) {
+		Preconditions.checkArgument(id >= 0);
+		Preconditions.checkArgument(serverID >= 0);
+		Preconditions.checkArgument(insertTime >= 0);
+		Preconditions.checkArgument(cpuTemp >= 0);
+		Preconditions.checkArgument(hdTemp >= 0);
+		Preconditions.checkArgument(diskFreeSpace >= 0);
+		Preconditions.checkArgument(diskUsedSpace >= 0);
+		
 		this.id = id;
 		this.server_id = serverID;
 		this.insert_time = insertTime;

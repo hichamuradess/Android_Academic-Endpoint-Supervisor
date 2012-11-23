@@ -12,7 +12,7 @@ import android.content.Intent;
 import android.text.format.Time;
 
 import com.agh.is.systemmonitor.domain.AgentInformation;
-import com.agh.is.systemmonitor.services.AsyncTaskResult;
+import com.agh.is.systemmonitor.services.AsynsTaskResponse;
 
 /**
  * Copyright (c) 2012
@@ -22,7 +22,7 @@ import com.agh.is.systemmonitor.services.AsyncTaskResult;
 public class HdTempHistChartBuilder extends AbstractHistChartBuilder {
 
 	public HdTempHistChartBuilder(
-			AsyncTaskResult<List<AgentInformation>> response, String xAxisLabel, String yAxisLabel) {
+			AsynsTaskResponse<List<AgentInformation>> response, String xAxisLabel, String yAxisLabel) {
 		super(response, xAxisLabel, yAxisLabel);
 	}
 
