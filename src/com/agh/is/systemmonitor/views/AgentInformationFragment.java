@@ -1,6 +1,7 @@
 package com.agh.is.systemmonitor.views;
 
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor.DiscardOldestPolicy;
 
 import roboguice.fragment.RoboFragment;
 import android.graphics.Color;
@@ -47,7 +48,7 @@ public class AgentInformationFragment extends RoboFragment{
 		return layout;
 	}
 
-	public void setAgentData(Agent agent, AgentInformationDataSet agentInfoData, DialogWindowsManager dialogManager) {
+	public void initializeAgentData(Agent agent, AgentInformationDataSet agentInfoData, DialogWindowsManager dialogManager) {
 		this.agent = agent;
 		this.agentInfo = agentInfoData.getAgentInfo();
 		this.dialogManager= dialogManager;
@@ -90,7 +91,7 @@ public class AgentInformationFragment extends RoboFragment{
         servicesTab.setContent(new TabContentFactory() {
 			@Override
 			public View createTabContent(String tag) {
-				return new AgentServicesTab(getActivity().getBaseContext(), services);
+				return new ServicesView(getActivity().getBaseContext(), services);
 			}
 		});
         tabHost.addTab(servicesTab);
