@@ -32,9 +32,10 @@ public class HdUsagePieChartViewBuilder {
 		renderer.setChartTitleTextSize(9);
 		renderer.setZoomEnabled(false);
 		renderer.setPanEnabled(false);
-	    renderer.setMargins(new int[] { 100, 10, 10, 10 });
+	    renderer.setMargins(new int[] { 100, 100, 10, 10 });
+	    renderer.setExternalZoomEnabled(false);
+		renderer.setInScroll(true);
 	    
-		
 		View view = ChartFactory.getPieChartView(context, series, renderer);
 		view.setMinimumHeight(100);
 		view.setMinimumWidth(100);
