@@ -9,15 +9,16 @@
         android:id="@+id/login_view_logo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginRight="300dp"
         android:layout_weight="0.2"
         layout="@layout/logo" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="@dimen/login_view_main_margin"
-        android:layout_marginRight="@dimen/login_view_main_margin"
+        android:layout_marginLeft="300dp"
+        android:layout_marginRight="300dp"
         android:layout_weight="0.8"
         android:background="@drawable/login_section_shape" >
 

@@ -26,7 +26,6 @@ public class ServiceRowView extends RelativeLayout{
 	
 	private TextView serviceName;
 	private TextView serviceDateOfCheck;
-	private TextView serviceResponseTime;
 	private ImageView serviceStatusImage;
 	private static final SimpleDateFormat dateFormatted = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 	
@@ -38,7 +37,6 @@ public class ServiceRowView extends RelativeLayout{
 	public void setService(AgentService agentService) {
 		serviceName.setText("Protokół : " + agentService.getPort());
 		serviceDateOfCheck.setText("Data ostatniego pomiaru : " + dateFormatted.format(new Date(agentService.getWhen())));
-		serviceResponseTime.setText("Odpowiedź agenta w ms : " + Long.toString(agentService.getTime()));
 		if (agentService.getTime() == -1) {
 			serviceStatusImage.setBackgroundResource(R.drawable.operation_result_dialog_error);
 		} else {
@@ -50,7 +48,6 @@ public class ServiceRowView extends RelativeLayout{
 		ViewGroup layout = getLayout();
 		serviceName = (TextView)layout.findViewById(R.id.service_row_view_name);
 		serviceDateOfCheck = (TextView)layout.findViewById(R.id.service_row_view_when);
-		serviceResponseTime = (TextView)layout.findViewById(R.id.service_row_view_time);
 		serviceStatusImage = (ImageView)layout.findViewById(R.id.service_row_view_status_photo);
 		setService(agentService);
 	}

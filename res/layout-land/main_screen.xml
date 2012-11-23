@@ -8,8 +8,9 @@
         android:id="@+id/login_view_logo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
         android:layout_weight="0.2"
+        android:layout_marginLeft="300dp"
+        android:layout_marginRight="300dp"
         layout="@layout/logo" />
     
     <LinearLayout
