@@ -39,6 +39,8 @@ public class DiskUsageView extends LinearLayout {
 	private TextView hdTempDateField;
 	private ThermometerView hdTempValueField;
 	private TextView hdTempHistoryField;
+	private TextView discUsageValueVield;
+	private LinearLayout pieChartPlaceholder;
 
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	private Activity activity;
@@ -48,21 +50,25 @@ public class DiskUsageView extends LinearLayout {
 		this.activity = activity;
 		initialize(agentInfo, dialogManager, agent);
 	}
-
+	
 	private void initialize(AgentInformation agentInfo, final DialogWindowsManager dialogManager, final Agent agent) {
-		HdUsagePieChartViewBuilder builder = new HdUsagePieChartViewBuilder();
+		
 		String service = Context.LAYOUT_INFLATER_SERVICE;
 		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(service);
 		inflater.inflate(LAYOUT_ID, this, true);
 		
-		pieChartView = builder.createPieChartView(activity.getBaseContext(), agentInfo.getDiskUsedSpace(), agentInfo.getDiskFreeSpace());
-		addView(pieChartView);
 		
+		discUsageValueVield = (TextView)findViewById(R.id.agent_information_disc_usage_value);
 		discUsageDateField = (TextView)findViewById(R.id.agent_information_disc_usage_date);
 		discUsageHistoryField = (TextView)findViewById(R.id.agent_information_disc_usage_history);
 		
+		HdUsagePieChartViewBuilder builder = new HdUsagePieChartViewBuilder();
+		pieChartView = builder.createPieChartView(activity.getBaseContext(), agentInfo.getDiskUsedSpace(), agentInfo.getDiskFreeSpace());
+		pieChartPlaceholder = (LinearLayout)findViewById(R.id.agent_information_disc_usage_piechart);
+		pieChartPlaceholder.addView(pieChartView);
 		
 		discUsageDateField.setText(dateFormat.format(new Date(agentInfo.getInsertTime())));
+		discUsageValueVield.setText(String.valueOf((100*agentInfo.getDiskUsedSpace()/(agentInfo.getDiskFreeSpace()+agentInfo.getDiskUsedSpace())))+"%");
 		
 		discUsageHistoryField.setOnClickListener(new OnClickListener() {
 			@Override
