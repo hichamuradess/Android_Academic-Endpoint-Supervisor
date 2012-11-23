@@ -84,7 +84,7 @@ public class DiskUsageView extends LinearLayout {
 		hdTempHistoryField = (TextView)findViewById(R.id.agent_information_hd_temp_history);
 		
 		hdTempDateField.setText(dateFormat.format(new Date(agentInfo.getInsertTime())));
-		hdTempValueField.setTemperature(agentInfo.getHdTemp());
+		hdTempValueField.setTemperature(agentInfo.getCpuTemp());
 		
 		hdTempHistoryField.setOnClickListener(new OnClickListener() {
 			@Override
