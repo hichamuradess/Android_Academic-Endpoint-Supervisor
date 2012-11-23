@@ -50,7 +50,7 @@ public class AgentInformationScreen extends SystemMonitorActivity {
 			dialogWindowManager = new DialogWindowsManager(this);
 			Agent agent = intent.getParcelableExtra("agent");
 			AgentInformationDataSet agentInfo = intent.getParcelableExtra("AgentInformationDataSet");
-			infoFragment.setAgentData(agent, agentInfo, dialogWindowManager);
+			infoFragment.initializeAgentData(agent, agentInfo, dialogWindowManager);
 		}
 	}
 

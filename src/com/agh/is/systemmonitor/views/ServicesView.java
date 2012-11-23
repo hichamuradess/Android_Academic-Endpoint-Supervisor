@@ -19,11 +19,11 @@ import com.agh.is.systemmonitor.domain.AgentService;
  * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
  * All rights reserved
  */
-public class AgentServicesTab extends LinearLayout {
+public class ServicesView extends LinearLayout {
 
 	private static final int LAYOUT_ID = R.layout.services_list_view;
 
-	public AgentServicesTab(Context context, List<AgentService> agentServices) {
+	public ServicesView(Context context, List<AgentService> agentServices) {
 		super(context);
 		initialize(agentServices);
 	}

@@ -38,6 +38,7 @@ public class HdUsagePieChartViewBuilder {
 		View view = ChartFactory.getPieChartView(context, series, renderer);
 		view.setMinimumHeight(100);
 		view.setMinimumWidth(100);
+		view.setPadding(0,100,0,0);
 		return view;
 	}
 }

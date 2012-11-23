@@ -35,6 +35,7 @@ public class DiskUsageView extends LinearLayout {
 
 	private TextView discUsageDateField;
 	private TextView discUsageHistoryField;
+	private TextView discUsageValueField;
 	private View pieChartView;
 	private TextView hdTempDateField;
 	private ThermometerView hdTempValueField;
@@ -70,6 +71,7 @@ public class DiskUsageView extends LinearLayout {
 		discUsageDateField.setText(dateFormat.format(new Date(agentInfo.getInsertTime())));
 		discUsageValueVield.setText(String.valueOf((100*agentInfo.getDiskUsedSpace()/(agentInfo.getDiskFreeSpace()+agentInfo.getDiskUsedSpace())))+"%");
 		
+		
 		discUsageHistoryField.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -90,7 +92,7 @@ public class DiskUsageView extends LinearLayout {
 		hdTempHistoryField = (TextView)findViewById(R.id.agent_information_hd_temp_history);
 		
 		hdTempDateField.setText(dateFormat.format(new Date(agentInfo.getInsertTime())));
-		hdTempValueField.setTemperature(agentInfo.getHdTemp());
+		hdTempValueField.setTemperature(agentInfo.getCpuTemp());
 		
 		hdTempHistoryField.setOnClickListener(new OnClickListener() {
 			@Override

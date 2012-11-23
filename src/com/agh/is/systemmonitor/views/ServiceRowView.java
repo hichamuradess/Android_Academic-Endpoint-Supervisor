@@ -38,7 +38,7 @@ public class ServiceRowView extends RelativeLayout{
 	public void setService(AgentService agentService) {
 		serviceName.setText("Protokół : " + agentService.getPort());
 		serviceDateOfCheck.setText("Data ostatniego pomiaru : " + dateFormatted.format(new Date(agentService.getWhen())));
-		serviceResponseTime.setText("Odpowiedź agenta w ms : " + dateFormatted.format(new Date(agentService.getTime())));
+		serviceResponseTime.setText("Odpowiedź agenta w ms : " + Long.toString(agentService.getTime()));
 		if (agentService.getTime() == -1) {
 			serviceStatusImage.setBackgroundResource(R.drawable.operation_result_dialog_error);
 		} else {

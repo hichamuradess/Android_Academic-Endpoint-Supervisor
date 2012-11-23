@@ -72,7 +72,7 @@
             android:id="@+id/agent_information_disc_usage_piechart"
 			android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="bottom"
             android:padding="10dp"
             />
         
