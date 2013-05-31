@@ -13,7 +13,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import com.agh.is.systemmonitor.domain.AgentInformation;
-import com.agh.is.systemmonitor.services.AsynsTaskResponse;
+import com.agh.is.systemmonitor.services.AsyncTaskResponse;
 import com.google.common.collect.Lists;
 
 import android.content.Context;
@@ -60,7 +60,7 @@ public abstract class AbstractHistChartBuilder implements HistChartBuilder{
 		return multipleSeriesRenderer;
 	}
 	
-	public AbstractHistChartBuilder(AsynsTaskResponse<List<AgentInformation>> response, String xAxisLabel, String yAxisLabel)
+	public AbstractHistChartBuilder(AsyncTaskResponse<List<AgentInformation>> response, String xAxisLabel, String yAxisLabel)
 	{
 		List<AgentInformation> list = Lists.newArrayList(response.getResult());
 		Collections.sort(list);

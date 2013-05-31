@@ -32,7 +32,7 @@ import android.view.animation.AnimationUtils;
 import com.agh.is.systemmonitor.R;
 import com.agh.is.systemmonitor.resolvers.network.LoginUserOnServerTask;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters;
-import com.agh.is.systemmonitor.services.AsynsTaskResponse;
+import com.agh.is.systemmonitor.services.AsyncTaskResponse;
 import com.agh.is.systemmonitor.views.LoginButtonOnClickListener;
 import com.agh.is.systemmonitor.views.LoginView;
 import com.google.common.io.CharStreams;

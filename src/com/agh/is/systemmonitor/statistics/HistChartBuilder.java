@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.agh.is.systemmonitor.domain.AgentInformation;
-import com.agh.is.systemmonitor.services.AsynsTaskResponse;
+import com.agh.is.systemmonitor.services.AsyncTaskResponse;
 
 /**
  * Copyright (c) 2012

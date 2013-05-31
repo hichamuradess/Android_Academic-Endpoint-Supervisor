@@ -8,7 +8,7 @@ import org.achartengine.model.CategorySeries;
 import org.achartengine.model.TimeSeries;
 
 import com.agh.is.systemmonitor.domain.AgentInformation;
-import com.agh.is.systemmonitor.services.AsynsTaskResponse;
+import com.agh.is.systemmonitor.services.AsyncTaskResponse;
 
 import android.R;
 import android.content.Context;
@@ -22,7 +22,7 @@ import android.content.Intent;
 public class HdUsageHistChartBuilder extends AbstractHistChartBuilder{
 
 	public HdUsageHistChartBuilder(
-			AsynsTaskResponse<List<AgentInformation>> response, String xAxisLabel, String yAxisLabel) {
+			AsyncTaskResponse<List<AgentInformation>> response, String xAxisLabel, String yAxisLabel) {
 		super(response, xAxisLabel, yAxisLabel);
 	}
 

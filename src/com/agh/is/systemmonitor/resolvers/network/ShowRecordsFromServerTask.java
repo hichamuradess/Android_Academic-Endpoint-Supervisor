@@ -1,7 +1,6 @@
 package com.agh.is.systemmonitor.resolvers.network;
 import java.util.List;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -10,11 +9,10 @@ import android.view.View.OnClickListener;
 
 import com.agh.is.systemmonitor.adapters.Record;
 import com.agh.is.systemmonitor.adapters.RecordsAdapter;
-import com.agh.is.systemmonitor.domain.AgentInformation;
 import com.agh.is.systemmonitor.resolvers.network.ServerParameters.ServerParametersBuilder;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
 import com.agh.is.systemmonitor.screens.MainScreen;
-import com.agh.is.systemmonitor.services.AsyncTaskResult;
+import com.agh.is.systemmonitor.services.AsyncTaskResponse;
 import com.agh.is.systemmonitor.services.ServerMonitoringService;
 
 /**
@@ -22,7 +20,7 @@ import com.agh.is.systemmonitor.services.ServerMonitoringService;
  * @author Kremski Adrian, Kulpa Marcin, Mirek Krzysztof, Olkuski Aleksander, Osika Jakub, Skrabalak Wojciech, Srebrny Tomasz, Szurek Kacper
  * All rights reserved
  */
-public class ShowRecordsFromServerTask extends WebServiceResolvingTask<Void, Void, AsyncTaskResult<List<Record>>>{
+public class ShowRecordsFromServerTask extends AsyncTask<Void, Void, AsyncTaskResponse<List<Record>>>{
 
 	private ServerParametersBuilder paramsBuilder = null;
 	private DialogWindowsManager dialogsManager;
@@ -36,18 +34,25 @@ public class ShowRecordsFromServerTask extends WebServiceResolvingTask<Void, Voi
 	}
 
 	@Override
-	protected AsyncTaskResult<List<Record>> doInBackground(Void... voidParams) {
+	protected AsyncTaskResponse<List<Record>> doInBackground(Void... voidParams) {
 		try {
+			dialogsManager.showProgressDialog("Pobieram listę rekordów");
 			List<Record> agents = serverService.downloadRecords(paramsBuilder);
-			return new AsyncTaskResult<List<Record>>(agents);
+			return new AsyncTaskResponse<List<Record>>(agents);
 		} catch (ResolvingException e) {
-			return new AsyncTaskResult<List<Record>>(e, "Pobieranie nie powiodło się (problem z połączeniem)");
+			return new AsyncTaskResponse<List<Record>>(e, "Pobieranie nie powiodło się (problem z połączeniem)");
 		}catch (Exception e) {
-			return new AsyncTaskResult<List<Record>>(e, "Operacja nie powiodła się");
+			return new AsyncTaskResponse<List<Record>>(e, "Operacja nie powiodła się");
 		}
 	}
-
-	private void handleServerResponse(AsyncTaskResult<List<Record>> response) {
+	
+	@Override
+	protected void onPostExecute(AsyncTaskResponse<List<Record>> response) {
+		dialogsManager.hideProgressDialog();
+		handleServerResponse(response);
+	}
+	
+	private void handleServerResponse(AsyncTaskResponse<List<Record>> response) {
 		if (response.getError() != null) {
 			dialogsManager.showFailureMessage(response.errorMessage());
 
@@ -57,38 +62,42 @@ public class ShowRecordsFromServerTask extends WebServiceResolvingTask<Void, Voi
 				dialogsManager.showFailureMessage("Pobieranie nie powiodło się : " + errMsg); 
 			}
 			else {
+				Intent intent = new Intent(mainScrnActivity, ServerMonitoringService.class);
+				intent.putExtra("group", paramsBuilder.build().getGroup());
+				mainScrnActivity.setListAdapter(new RecordsAdapter(mainScrnActivity, response.getResult(), mainScrnActivity));
+				mainScrnActivity.bindService(intent);
 			}
 		}
 
 	}
 
-	@Override
-	protected AsyncTaskResult<List<Record>> resolve() throws ResolvingException {
-		return new AsyncTaskResult<List<Record>>(serverService.downloadRecords(paramsBuilder));
-	}
-
-	@Override
-	protected void handleError(Exception error) {
-		Log.e("ShowRecordsFromServerTask", error.getMessage());
-	}
-
-	@Override
-	protected void handleSuccess(
-			AsyncTaskResult<AsyncTaskResult<List<Record>>> result) {
-		Log.e("ShowRecordsFromServerTask", "Downloaded records : " + result.toString());
-		
-	}
-
-	@Override
-	protected OnClickListener getSuccessDialogWindowButtonClickListener(final AsyncTaskResult<List<Record>> result) {
-		return new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(mainScrnActivity, ServerMonitoringService.class);
-				intent.putExtra("group", paramsBuilder.build().getGroup());
-				mainScrnActivity.setListAdapter(new RecordsAdapter(mainScrnActivity, result.getResult(), mainScrnActivity));
-				mainScrnActivity.bindService(intent);
-			}
-		};
-	}
+//	@Override
+//	protected AsyncTaskResponse<List<Record>> resolve() throws ResolvingException {
+//		return new AsyncTaskResponse<List<Record>>(serverService.downloadRecords(paramsBuilder));
+//	}
+//
+//	@Override
+//	protected void handleError(Exception error) {
+//		Log.e("ShowRecordsFromServerTask", error.getMessage());
+//	}
+//
+//	@Override
+//	protected void handleSuccess(
+//			AsyncTaskResponse<AsyncTaskResponse<List<Record>>> result) {
+//		Log.e("ShowRecordsFromServerTask", "Downloaded records : " + result.toString());
+//		
+//	}
+//
+//	@Override
+//	protected OnClickListener getSuccessDialogWindowButtonClickListener(final AsyncTaskResponse<List<Record>> result) {
+//		return new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Intent intent = new Intent(mainScrnActivity, ServerMonitoringService.class);
+//				intent.putExtra("group", paramsBuilder.build().getGroup());
+//				mainScrnActivity.setListAdapter(new RecordsAdapter(mainScrnActivity, result.getResult(), mainScrnActivity));
+//				mainScrnActivity.bindService(intent);
+//			}
+//		};
+//	}
 }

@@ -8,9 +8,9 @@ import android.view.View;
 
 import com.agh.is.systemmonitor.adapters.Record;
 import com.agh.is.systemmonitor.screens.DialogWindowsManager;
-import com.agh.is.systemmonitor.services.AsynsTaskResponse;
+import com.agh.is.systemmonitor.services.AsyncTaskResponse;
 
-public abstract class WebServiceResolvingTask<T, K, V> extends AsyncTask<T, K, AsynsTaskResponse<V>> {
+public abstract class WebServiceResolvingTask<T, K, V> extends AsyncTask<T, K, AsyncTaskResponse<V>> {
 
 	private DialogWindowsManager dialogsManager;
 	private String operationStartedMessage;
@@ -27,19 +27,19 @@ public abstract class WebServiceResolvingTask<T, K, V> extends AsyncTask<T, K, A
 	}
 
 	@Override
-	protected AsynsTaskResponse<V> doInBackground(T... params) {
+	protected AsyncTaskResponse<V> doInBackground(T... params) {
 		try {
 			dialogsManager.showProgressDialog(operationStartedMessage);
-			return new AsynsTaskResponse<V>(resolve());
+			return new AsyncTaskResponse<V>(resolve());
 		} catch (ResolvingException e) {
-			return new AsynsTaskResponse<V>(e, connnectionProblemMessage);
+			return new AsyncTaskResponse<V>(e, connnectionProblemMessage);
 		} catch (Exception e) {
-			return new AsynsTaskResponse<V>(e, operationFailedMessage);
+			return new AsyncTaskResponse<V>(e, operationFailedMessage);
 		}
 	}
 
 	@Override
-	protected void onPostExecute(AsynsTaskResponse<V> response) {
+	protected void onPostExecute(AsyncTaskResponse<V> response) {
 		dialogsManager.hideProgressDialog();
 		if (response.getError() != null) {
 			dialogsManager.showFailureMessage(response.errorMessage());
@@ -53,7 +53,7 @@ public abstract class WebServiceResolvingTask<T, K, V> extends AsyncTask<T, K, A
 
 	protected abstract V resolve() throws ResolvingException;
 	protected abstract void handleError(Exception error);
-	protected abstract void handleSuccess(AsynsTaskResponse<V> result);
+	protected abstract void handleSuccess(AsyncTaskResponse<V> result);
 	protected abstract android.view.View.OnClickListener getSuccessDialogWindowButtonClickListener(V result);
 
 
