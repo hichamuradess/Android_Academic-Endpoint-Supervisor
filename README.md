@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-AES_AndroidKlient
-=================
-=======
-Academic-Endpoint-Supervisor
-============================
-
-Academic Endpoint Supervisor
->>>>>>> a465589c549f370122096ef3d9758fa11ebf6dcb
+ Academic Endpoint Supervisor is designed for monitoring remote devices (with linux/windows operating system). Project presented here is a client part of the system. It's purpose is to provide real time monitoring, and possibility for basic edition of sustem configuration.
